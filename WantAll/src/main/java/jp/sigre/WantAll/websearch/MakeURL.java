@@ -13,6 +13,7 @@ public class MakeURL {
 	 */
 	public URI generateGoogleUri(List<String> wordList) {
 		String searchWord = makeWordListToStr(wordList);
+		searchWord = removeBlank(searchWord);
 		URI uri = generateGoogleUri(searchWord);
 
 		return uri;
@@ -44,15 +45,15 @@ public class MakeURL {
 	}
 
 
-//	private String createGoogleURIStr(List<String> wordList) {
-//		String searchWord = makeWordListToStr(wordList);
-//		return createGoogleURIStr(searchWord);
-//	}
-//
-//	private String googleURIStrWithTorrent(List<String> wordList) {
-//		wordList.add("torrent");
-//		return createGoogleURIStr(wordList);
-//	}
+	//	private String createGoogleURIStr(List<String> wordList) {
+	//		String searchWord = makeWordListToStr(wordList);
+	//		return createGoogleURIStr(searchWord);
+	//	}
+	//
+	//	private String googleURIStrWithTorrent(List<String> wordList) {
+	//		wordList.add("torrent");
+	//		return createGoogleURIStr(wordList);
+	//	}
 
 	private String makeWordListToStr(List<String> wordList) {
 		String searchWord = wordList.get(0);
@@ -63,6 +64,11 @@ public class MakeURL {
 		}
 
 		return searchWord;
+	}
+
+	private String removeBlank(String word) {
+		word = word.replace("　", " ");
+		return word.replace(" ", "+");
 	}
 
 }

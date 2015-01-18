@@ -65,19 +65,19 @@ public class ConnectDB {
 
 	/**
 	 * 商品を1件DBにInsertする
-	 * @param bean
+	 * @param info
 	 * @return 更新件数
 	 */
-	public int insertProductInfo(ProductInfoBean bean) {
+	public int insertProductInfo(ProductInfoBean info) {
 		try {
 			con = getConnection();
 			String sql =  "INSERT INTO ProductInfo (Title, Author, URL, ReleaseDate, Flg) VALUES (?, ?, ?, ?, ?);";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getTitle());
-			pstmt.setString(2, bean.getAuthor());
-			pstmt.setString(3, bean.getUrl());
-			pstmt.setInt   (4, bean.getReleaseDate());
-			pstmt.setInt   (5, bean.getFlag());
+			pstmt.setString(1, info.getTitle());
+			pstmt.setString(2, info.getAuthor());
+			pstmt.setString(3, info.getUrl());
+			pstmt.setInt   (4, info.getReleaseDate());
+			pstmt.setInt   (5, info.getFlag());
 
 			return pstmt.executeUpdate();
 		} catch (SQLException e1) {
@@ -113,6 +113,38 @@ public class ConnectDB {
 			closeStatement();
 		}
 		return null;
+	}
+
+	/**
+	 * 商品を1件DBにInsertする
+	 * @param info
+	 * @return 更新件数
+	 */
+	public int deleteProductInfo(ProductInfoBean info) {
+		try {
+			con = getConnection();
+			String sql =  "DELETE FROM ProductInfo "
+						+ "WHERE	id = ?"
+						+ "AND		title = ?"
+						+ "AND		author = ?"
+						+ "AND		url = ?"
+						+ "AND		releasedate = ?"
+						+ "AND		flg = ?;";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt   (1, info.getId());
+			pstmt.setString(2, info.getTitle());
+			pstmt.setString(3, info.getAuthor());
+			pstmt.setString(4, info.getUrl());
+			pstmt.setInt   (5, info.getReleaseDate());
+			pstmt.setInt   (6, info.getFlag());
+
+			return pstmt.executeUpdate();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}  finally {
+			closeStatement();
+		}
+		return 0;
 	}
 
 	/**

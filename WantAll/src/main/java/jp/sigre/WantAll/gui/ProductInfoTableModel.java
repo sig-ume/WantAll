@@ -19,7 +19,7 @@ import jp.sigre.WantAll.database.productinfo.ConnectDB;
 public class ProductInfoTableModel extends DefaultTableModel {
 	ConnectDB db = new ConnectDB();
 
-	public ProductInfoTableModel() {
+	public ProductInfoTableModel(boolean bool) {
 		super();
 
 		String[] dbColumns = db.getColumns();
@@ -29,17 +29,17 @@ public class ProductInfoTableModel extends DefaultTableModel {
 		super.setColumnCount(columns.length);
 		super.setRowCount(0);
 		super.setColumnIdentifiers(columns);
-		setProductInfo();
+		setProductInfo(bool);
 	}
 
-	private void setProductInfo() {
+	private void setProductInfo(boolean bool) {
 		List<ProductInfoBean> list = new ConnectDB().getProductInfoList();
 
 		for (ProductInfoBean info : list) {
 			Object[] row = info.getInfoAsAry();
 //			Object[] rowAddedBool = new String[row.length+1];
 			Vector<Object> rowAddedBool = new Vector<>(Arrays.asList(row));
-			rowAddedBool.add(new Boolean(true));
+			rowAddedBool.add(new Boolean(bool));
 			super.addRow(rowAddedBool);
 
 		}

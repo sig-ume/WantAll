@@ -41,7 +41,7 @@ public class ConnectDBTest {
 	}
 
 	@Test
-	public void getProductResultSetTest() throws SQLException {
+	public void getProductInfoTest() throws SQLException {
 		List<ProductInfoBean> actual = cdb.getProductInfoList();
 		ProductInfoBean expected = new ProductInfoBean(	2,
 														"とある魔術の禁書目録",
@@ -50,6 +50,21 @@ public class ConnectDBTest {
 														20120101,
 														0);
 		assertThat(actual, hasItem(SamePropertyValuesAs.samePropertyValuesAs(expected)));
+	}
+
+	@Test
+	public void deleteProductInfoTest() throws SQLException {
+		List<ProductInfoBean> list = cdb.getProductInfoList();
+		int size = list.size();
+		ProductInfoBean bean = new ProductInfoBean(	size,
+														"とある魔術の禁書目録test",
+														"かまちかずま",
+														"http://index.com",
+														20120101,
+														0);
+		cdb.insertProductInfo(bean);
+		int actual = cdb.deleteProductInfo(bean);
+		assertThat(actual, is(1));
 	}
 
 	@Test
