@@ -3,7 +3,9 @@
  */
 package jp.sigre.WantAll.gui;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -19,7 +21,11 @@ public class ProductInfoTableModel extends DefaultTableModel {
 
 	public ProductInfoTableModel() {
 		super();
-		String[] columns = db.getColumns();
+
+		String[] dbColumns = db.getColumns();
+		String[] columns = new String[7];
+		System.arraycopy(dbColumns, 0, columns, 0, dbColumns.length);
+		columns[columns.length-1] = "CheckBox";
 		super.setColumnCount(columns.length);
 		super.setRowCount(0);
 		super.setColumnIdentifiers(columns);
@@ -30,7 +36,11 @@ public class ProductInfoTableModel extends DefaultTableModel {
 		List<ProductInfoBean> list = new ConnectDB().getProductInfoList();
 
 		for (ProductInfoBean info : list) {
-			super.addRow(info.getInfoAsAry());
+			Object[] row = info.getInfoAsAry();
+//			Object[] rowAddedBool = new String[row.length+1];
+			Vector<Object> rowAddedBool = new Vector<>(Arrays.asList(row));
+			rowAddedBool.add(new Boolean(true));
+			super.addRow(rowAddedBool);
 
 		}
 	}
@@ -44,5 +54,9 @@ public class ProductInfoTableModel extends DefaultTableModel {
 	public void updateProductInfo(ProductInfoBean info) {
 
 		super.addRow(info.getInfoAsAry());
+	}
+
+	public Class getColumnClass(int col) {
+		return getValueAt(0, col).getClass();
 	}
 }
