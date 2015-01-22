@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -52,7 +53,8 @@ public class InfoDeleteGui extends JFrame {
 		//columnNames = new ConnectDB().getColumns();
 		//tabledata = new ShowProductList().getProductStrAry();
 
-		model = new ProductInfoTableModel(false);
+		model = new ProductInfoTableModel();
+		model.setProductInfoAll(false);
 		table = new JTable(model);
 		//	    contentPane.add(table, BorderLayout.CENTER);
 		sp = new JScrollPane(table);
@@ -68,15 +70,67 @@ public class InfoDeleteGui extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JButton searchButton = new JButton("Delete");
-		searchButton.setBounds(170, 138, 91, 21);
-		searchButton.addActionListener(new ActionListener() {
+		JButton deleteButton = new JButton("Delete");
+		deleteButton.setBounds(170, 138, 91, 21);
+		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				delete();
+				deleteDialog();
 			}
 		});
-		panel.add(searchButton);
+		panel.add(deleteButton);
 
+		JButton delete9Button = new JButton("Delete 9");
+		delete9Button.setBounds(170, 77, 91, 21);
+		delete9Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				delete9Dialog();
+			}
+		});
+		panel.add(delete9Button);
+
+	}
+
+	private void deleteDialog() {
+		int option = JOptionPane.showConfirmDialog(this, "削除しますか", "確認", 2);//showConfirmDialog(this, "男性ですか？");
+
+	    if (option == JOptionPane.YES_OPTION){
+	    	delete();
+	    }else if (option == JOptionPane.CANCEL_OPTION){
+
+	    }
+	}
+
+	private void delete9Dialog() {
+		int option = JOptionPane.showConfirmDialog(this, "削除しますか", "確認", 2);//showConfirmDialog(this, "男性ですか？");
+
+	    if (option == JOptionPane.YES_OPTION){
+	    	delete9();
+	    }else if (option == JOptionPane.CANCEL_OPTION){
+
+	    }
+	}
+
+	private void delete9() {
+		for (int row = 0; row <model.getRowCount(); row++) {
+			if (model.getValueAt(row, 5).equals("9")) {
+				int	   id	   = new Integer(model.getValueAt(row, 0).toString());
+				String title   = (String) model.getValueAt(row, 1);
+				String author  = (String) model.getValueAt(row, 2);
+				String url     = (String) model.getValueAt(row, 3);
+				int	   release = new Integer(model.getValueAt(row, 4).toString());
+				int    flg	   = new Integer(model.getValueAt(row, 5).toString());
+				ProductInfoBean info = new ProductInfoBean(id, title, author, url, release, flg);
+				int count = new ConnectDB().deleteProductInfo(info);
+				if (count == 1 ) {
+					System.out.println("remove9");
+					model.removeRow(row);
+					row--;
+				} else {
+					System.out.println(info.getInfoAsAry().toString());
+				}
+			}
+		}
+		table.repaint();
 	}
 
 	private void delete() {

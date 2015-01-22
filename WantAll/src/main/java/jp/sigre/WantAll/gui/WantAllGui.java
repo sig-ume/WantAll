@@ -64,7 +64,8 @@ public class WantAllGui extends JFrame {
 		//columnNames = new ConnectDB().getColumns();
 		//tabledata = new ShowProductList().getProductStrAry();
 
-		model = new ProductInfoTableModel(true);
+		model = new ProductInfoTableModel();
+		model.setProductInfo(true);
 		table = new JTable(model);
 		//	    contentPane.add(table, BorderLayout.CENTER);
 		sp = new JScrollPane(table);

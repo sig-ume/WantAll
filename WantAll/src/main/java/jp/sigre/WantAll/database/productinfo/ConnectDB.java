@@ -51,7 +51,7 @@ public class ConnectDB {
 	public List<ProductInfoBean> getProductInfoList() {
 		try {
 			con = getConnection();
-			String sql = "SELECT * FROM ProductInfo;";
+			String sql = "SELECT * FROM ProductInfo WHERE flg != 9;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			return new ConvertResultSet().convertProjectInfo(rs);
@@ -62,6 +62,25 @@ public class ConnectDB {
 		}
 		return null;
 	}
+
+	/**
+	 * ProductInfoTableのデータをBeanに格納してリスト化
+	 * @return
+	 */
+public List<ProductInfoBean> getProductInfoListAll() {
+	try {
+		con = getConnection();
+		String sql = "SELECT * FROM ProductInfo;";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		return new ConvertResultSet().convertProjectInfo(rs);
+	} catch (SQLException e1) {
+		e1.printStackTrace();
+	}  finally {
+		closeStatement();
+	}
+	return null;
+}
 
 	/**
 	 * 商品を1件DBにInsertする
@@ -147,6 +166,26 @@ public class ConnectDB {
 		return 0;
 	}
 
+	public int updateProductInfoFlg(int id, int updateFlg) {
+		try {
+			con = getConnection();
+			String sql =  "UPDATE  ProductInfo "
+						+ "SET 		flg = ?"
+						+ "WHERE	id = ?";
+;
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt   (1, updateFlg);
+			pstmt.setInt   (2, id);
+
+			return pstmt.executeUpdate();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}  finally {
+			closeStatement();
+		}
+		return 0;
+	}
+
 	/**
 	 * DB切断。
 	 * @return
@@ -169,7 +208,9 @@ public class ConnectDB {
 			e.printStackTrace();
 		}
 		con = DriverManager
-				.getConnection("jdbc:sqlite:C:/WantAll/ex1.db");
+				.getConnection("jdbc:sqlite:db/ProductInfo.db");
 		return con;
 	}
+
+
 }
