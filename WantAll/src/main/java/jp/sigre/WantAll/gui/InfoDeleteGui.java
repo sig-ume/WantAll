@@ -26,6 +26,8 @@ public class InfoDeleteGui extends JFrame {
 	JScrollPane sp = null;
 	ProductInfoTableModel model;
 
+	JButton deleteButton;
+	JButton delete9Button;
 
 	/**
 	 * Launch the application.
@@ -50,13 +52,10 @@ public class InfoDeleteGui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 492, 400);
 
-		//columnNames = new ConnectDB().getColumns();
-		//tabledata = new ShowProductList().getProductStrAry();
-
 		model = new ProductInfoTableModel();
 		model.setProductInfoAll(false);
 		table = new JTable(model);
-		//	    contentPane.add(table, BorderLayout.CENTER);
+
 		sp = new JScrollPane(table);
 		sp.setPreferredSize(new Dimension(400, 140));
 
@@ -70,22 +69,14 @@ public class InfoDeleteGui extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JButton deleteButton = new JButton("Delete");
+		deleteButton = new JButton("Delete");
 		deleteButton.setBounds(170, 138, 91, 21);
-		deleteButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				deleteDialog();
-			}
-		});
+		deleteButton.addActionListener(new ProductInfoListener());
 		panel.add(deleteButton);
 
-		JButton delete9Button = new JButton("Delete 9");
+		delete9Button = new JButton("Delete 9");
 		delete9Button.setBounds(170, 77, 91, 21);
-		delete9Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				delete9Dialog();
-			}
-		});
+		delete9Button.addActionListener(new ProductInfoListener());
 		panel.add(delete9Button);
 
 	}
@@ -114,9 +105,9 @@ public class InfoDeleteGui extends JFrame {
 		for (int row = 0; row <model.getRowCount(); row++) {
 			if (model.getValueAt(row, 5).equals("9")) {
 				int	   id	   = new Integer(model.getValueAt(row, 0).toString());
-				String title   = (String) model.getValueAt(row, 1);
-				String author  = (String) model.getValueAt(row, 2);
-				String url     = (String) model.getValueAt(row, 3);
+				String title   =	 (String)model.getValueAt(row, 1);
+				String author  =	 (String)model.getValueAt(row, 2);
+				String url     =	 (String)model.getValueAt(row, 3);
 				int	   release = new Integer(model.getValueAt(row, 4).toString());
 				int    flg	   = new Integer(model.getValueAt(row, 5).toString());
 				ProductInfoBean info = new ProductInfoBean(id, title, author, url, release, flg);
@@ -137,9 +128,9 @@ public class InfoDeleteGui extends JFrame {
 		for (int row = 0; row <model.getRowCount(); row++) {
 			if ((boolean)model.getValueAt(row, 6)) {
 				int	   id	   = new Integer(model.getValueAt(row, 0).toString());
-				String title   = (String) model.getValueAt(row, 1);
-				String author  = (String) model.getValueAt(row, 2);
-				String url     = (String) model.getValueAt(row, 3);
+				String title   =	 (String)model.getValueAt(row, 1);
+				String author  =	 (String)model.getValueAt(row, 2);
+				String url     =	 (String)model.getValueAt(row, 3);
 				int	   release = new Integer(model.getValueAt(row, 4).toString());
 				int    flg	   = new Integer(model.getValueAt(row, 5).toString());
 				ProductInfoBean info = new ProductInfoBean(id, title, author, url, release, flg);
@@ -153,5 +144,19 @@ public class InfoDeleteGui extends JFrame {
 			}
 		}
 		table.repaint();
+	}
+
+	private class ProductInfoListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource()  ==  deleteButton)  {
+				deleteDialog();
+			}
+			if(event.getSource()  ==  delete9Button)  {
+				delete9Dialog();
+			}
+
+		}
 	}
 }

@@ -36,7 +36,7 @@ public class DownloadInfo {
 	private int checkWebSite(String url) {
 		String amazon = "amazon";
 		String dlsite = "dlsite";
-		String dmm    = "dmm";
+		//String dmm    = "dmm";
 		if (url.matches(".*" + amazon + ".*")) {
 			return 1;
 		}

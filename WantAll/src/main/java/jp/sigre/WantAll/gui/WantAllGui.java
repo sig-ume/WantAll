@@ -12,6 +12,9 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,11 +28,18 @@ import jp.sigre.WantAll.websearch.CallBrowser;
 public class WantAllGui extends JFrame {
 
 	private JTable table;
+
 	private JTextField titleField;
 	private JTextField authorField;
 	private JTextField urlField;
 	private JTextField releaseDateField;
+
 	private JButton insertButton;
+	private JButton searchButton;
+	private JButton urlInsertButton;
+	private JButton btnReset;
+
+	JPanel p;
 
 	String[] columnNames;
 	String[][] tabledata;
@@ -61,17 +71,15 @@ public class WantAllGui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 492, 400);
 
-		//columnNames = new ConnectDB().getColumns();
-		//tabledata = new ShowProductList().getProductStrAry();
-
 		model = new ProductInfoTableModel();
 		model.setProductInfo(true);
 		table = new JTable(model);
-		//	    contentPane.add(table, BorderLayout.CENTER);
+
+
 		sp = new JScrollPane(table);
 		sp.setPreferredSize(new Dimension(400, 140));
 
-		JPanel p = new JPanel();
+		p = new JPanel();
 		p.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p.add(sp);
 
@@ -103,11 +111,7 @@ public class WantAllGui extends JFrame {
 
 		insertButton = new JButton("Insert");
 		insertButton.setBounds(157, 59, 104, 21);
-		insertButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				insertProductInfo();
-			}
-		});
+		insertButton.addActionListener(new ProductInfoListener());
 		panel.add(insertButton);
 
 		JLabel lblTitle = new JLabel("Title");
@@ -126,13 +130,9 @@ public class WantAllGui extends JFrame {
 		lblDate.setBounds(359, 7, 50, 13);
 		panel.add(lblDate);
 
-		JButton searchButton = new JButton("Search");
-		searchButton.setBounds(170, 138, 91, 21);
-		searchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				search();
-			}
-		});
+		searchButton = new JButton("Search");
+		searchButton.setBounds(80, 136, 91, 21);
+		searchButton.addActionListener(new ProductInfoListener());
 		panel.add(searchButton);
 
 		textField = new JTextField();
@@ -140,15 +140,32 @@ public class WantAllGui extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 
-		JButton urlInsertButton = new JButton("URL");
+		urlInsertButton = new JButton("URL");
 		urlInsertButton.setBounds(17, 98, 91, 21);
-		urlInsertButton.addActionListener(new ActionListener() {
+		urlInsertButton.addActionListener(new ProductInfoListener());
+		panel.add(urlInsertButton);
+
+		btnReset = new JButton("Reset");
+		btnReset.setBounds(233, 136, 91, 21);
+		btnReset.addActionListener(new ProductInfoListener());
+		panel.add(btnReset);
+
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		JMenu menu = new JMenu("機能");
+		menuBar.add(menu);
+
+		JMenuItem mntmWantall = new JMenuItem("WantAll");
+		mntmWantall.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProductInfoBean info = new DownloadInfo().get(textField.getText());
-				insertProductInfo(info);
+				System.out.println("test");
 			}
 		});
-		panel.add(urlInsertButton);
+		menu.add(mntmWantall);
+
+		JMenuItem mntmInfodelete = new JMenuItem("InfoDelete");
+		menu.add(mntmInfodelete);
 
 	}
 
@@ -195,5 +212,29 @@ public class WantAllGui extends JFrame {
 		}
 		System.out.println("test end");
 
+	}
+
+	private class ProductInfoListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource()  ==  insertButton)  {
+				insertProductInfo();
+			}
+			if(event.getSource()  ==  searchButton)  {
+				search();
+			}
+			if(event.getSource()  ==  urlInsertButton)  {
+				ProductInfoBean info = new DownloadInfo().get(textField.getText());
+				insertProductInfo(info);
+			}
+			if(event.getSource()  ==  btnReset)  {
+				//remove(sp);
+				model = new ProductInfoTableModel();
+				model.setProductInfo(true);
+				table.setModel(model);
+
+			}
+		}
 	}
 }
