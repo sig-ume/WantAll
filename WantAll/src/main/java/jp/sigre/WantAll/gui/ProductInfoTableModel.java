@@ -36,6 +36,7 @@ public class ProductInfoTableModel extends DefaultTableModel {
 
 		for (ProductInfoBean info : list) {
 			Object[] row = info.getInfoAsAry();
+//			Object[] rowAddedBool = new String[row.length+1];
 			Vector<Object> rowAddedBool = new Vector<>(Arrays.asList(row));
 			rowAddedBool.add(new Boolean(bool));
 			super.addRow(rowAddedBool);
@@ -43,19 +44,12 @@ public class ProductInfoTableModel extends DefaultTableModel {
 		}
 	}
 
-	public void resetProductInfo(boolean bool) {
-		for (int i = 0; i < super.getRowCount(); i++) {
-			super.removeRow(i);
-		}
-
-		setProductInfo(bool);
-	}
-
 	public void setProductInfoAll(boolean bool) {
 		List<ProductInfoBean> list = new ConnectDB().getProductInfoListAll();
 
 		for (ProductInfoBean info : list) {
 			Object[] row = info.getInfoAsAry();
+//			Object[] rowAddedBool = new String[row.length+1];
 			Vector<Object> rowAddedBool = new Vector<>(Arrays.asList(row));
 			rowAddedBool.add(new Boolean(bool));
 			super.addRow(rowAddedBool);
@@ -74,7 +68,7 @@ public class ProductInfoTableModel extends DefaultTableModel {
 		super.addRow(info.getInfoAsAry());
 	}
 
-	public Class<? extends Object> getColumnClass(int col) {
+	public Class getColumnClass(int col) {
 		return getValueAt(0, col).getClass();
 	}
 }

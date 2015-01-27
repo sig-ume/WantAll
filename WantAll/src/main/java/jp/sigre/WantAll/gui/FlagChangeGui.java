@@ -28,9 +28,6 @@ public class FlagChangeGui extends JFrame {
 	ProductInfoTableModel model;
 	String selected;
 
-	JButton searchButton;
-	JComboBox<String> combo;
-
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +51,9 @@ public class FlagChangeGui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 492, 400);
 
+		//columnNames = new ConnectDB().getColumns();
+		//tabledata = new ShowProductList().getProductStrAry();
+
 		model = new ProductInfoTableModel();
 		model.setProductInfoAll(false);
 		table = new JTable(model);
@@ -75,23 +75,28 @@ public class FlagChangeGui extends JFrame {
 		combodata.add("未入手");
 		combodata.add("入手済み");
 		combodata.add("不要");
-		combo = new JComboBox<>(combodata);
+		final JComboBox<String> combo = new JComboBox<>(combodata);
 		combo.setBounds(204, 57, 108, 19);
 		panel.add(combo);
 
-		searchButton = new JButton("update");
+		JButton searchButton = new JButton("update");
 		searchButton.setBounds(170, 138, 91, 21);
-		searchButton.addActionListener(new ProductInfoListener());
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selected = (String)combo.getSelectedItem();
+				updateDialog(selected);
+			}
+		});
 		panel.add(searchButton);
 	}
 
 	private void updateDialog(String selected) {
 		int option = JOptionPane.showConfirmDialog(this, "フラグを変更しますか"+selected, "確認", 2);
 		if (option == JOptionPane.YES_OPTION){
-			update(selected);
-		}else if (option == JOptionPane.CANCEL_OPTION){
+	    	update(selected);
+	    }else if (option == JOptionPane.CANCEL_OPTION){
 
-		}
+	    }
 	}
 
 	private void update(String selected) {
@@ -116,17 +121,5 @@ public class FlagChangeGui extends JFrame {
 			}
 		}
 		table.repaint();
-	}
-
-	private class ProductInfoListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			if(event.getSource()  ==  searchButton)  {
-				selected = (String)combo.getSelectedItem();
-				updateDialog(selected);
-			}
-
-		}
 	}
 }
