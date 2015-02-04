@@ -22,6 +22,7 @@ public class DownloadInfo {
 			break;
 		case 2:
 			parser = new ParseHtmlDlsite(url);
+			break;
 		default:
 			return null;
 		}
@@ -29,6 +30,8 @@ public class DownloadInfo {
 		String title = parser.getProductName();
 		String maker = parser.getProductMaker();
 		int    rDate = parser.getProductRelease();
+
+		System.out.println("aaa"+title);
 
 		return new ProductInfoBean(-1, title, maker, url, rDate, 0);
 	}

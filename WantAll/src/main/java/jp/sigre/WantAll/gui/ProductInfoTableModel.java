@@ -34,14 +34,25 @@ public class ProductInfoTableModel extends DefaultTableModel {
 	public void setProductInfo(boolean bool) {
 		List<ProductInfoBean> list = new ConnectDB().getProductInfoList();
 
+		setRows(list, bool);
+	}
+
+
+	public void setProductInfoAll(boolean bool) {
+		List<ProductInfoBean> list = new ConnectDB().getProductInfoListAll();
+
+		setRows(list, bool);
+	}
+
+	private void setRows(List<ProductInfoBean> list, boolean bool) {
 		for (ProductInfoBean info : list) {
 			Object[] row = info.getInfoAsAry();
 			Vector<Object> rowAddedBool = new Vector<>(Arrays.asList(row));
 			rowAddedBool.add(new Boolean(bool));
 			super.addRow(rowAddedBool);
-
 		}
 	}
+
 
 	public void resetProductInfo(boolean bool) {
 		for (int i = 0; i < super.getRowCount(); i++) {
@@ -49,18 +60,6 @@ public class ProductInfoTableModel extends DefaultTableModel {
 		}
 
 		setProductInfo(bool);
-	}
-
-	public void setProductInfoAll(boolean bool) {
-		List<ProductInfoBean> list = new ConnectDB().getProductInfoListAll();
-
-		for (ProductInfoBean info : list) {
-			Object[] row = info.getInfoAsAry();
-			Vector<Object> rowAddedBool = new Vector<>(Arrays.asList(row));
-			rowAddedBool.add(new Boolean(bool));
-			super.addRow(rowAddedBool);
-
-		}
 	}
 
 	/**

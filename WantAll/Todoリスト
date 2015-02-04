@@ -1,12 +1,9 @@
 ●やりたいこと
-
+・リセットボタンが動かない
+・jpanel.setLayout(null)の意味
 ・確認ポップアップ（完）
 	・削除予定データ表示
 		・詳細ボタンとか作りたいね
-
-	通常画面データから削除フラグの表示を排除
-
-
 
 ・メニューバー追加
 ・ViewとModelを分離
@@ -16,6 +13,7 @@
 
 ・変更履歴機能
 ・GUI画面変更
+	・各画面 上段下段Panelに分割
 	http://nowloading.blog.jp/archives/36741210.html
 ・複数サイト検索機能
 ・作者ブックマーク
@@ -24,8 +22,7 @@
 
 ・チェックボックス全選択or全解除ボタン
 
-・プロダクトインフォテーブルモデルの実装修正
-	・setList？やるのよくない
+・Javadoc追加
 
 ・定数管理クラス作成
 
@@ -33,9 +30,13 @@
 ・Jar出力して動作チェック→EXE化
 http://makotojun.blog52.fc2.com/blog-entry-7.html
 
+・UnparsedDate
+http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1&smid=A3EFI0A1TYYBWT
+
 
 ●やりおわったこと
-
+・プロダクトインフォテーブルモデルの実装修正
+・URLによるインサートがうまくいかない→switch文のbreak不足でdefaultまで走ってた。
 
 
 
