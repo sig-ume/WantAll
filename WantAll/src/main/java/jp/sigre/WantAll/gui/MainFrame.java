@@ -3,9 +3,13 @@
  */
 package jp.sigre.WantAll.gui;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import jp.sigre.WantAll.gui.panel.FlagChangeListPanel;
 import jp.sigre.WantAll.gui.panel.InfoDeleteListPanel;
@@ -25,6 +29,9 @@ public class MainFrame extends JFrame {
 	FlagChangeListPanel flagChangePanel = new FlagChangeListPanel();
 	InfoDeleteListPanel infoDeletePanel = new InfoDeleteListPanel();
 
+	JMenuItem mntmWantall;
+	JMenuItem mntmInfodelete;
+
 	public MainFrame(){
 		this.setBounds(100, 100, 492, 400);
 
@@ -38,31 +45,55 @@ public class MainFrame extends JFrame {
 		//getContentPane().add(flagChangePanel, BorderLayout.NORTH);
 		//flagChangePanel.setVisible(false);
 		//this.add(infoDeltePanel);
-		//getContentPane().add(infoDeletePanel, BorderLayout.NORTH);
-		//infoDeletePanel.setVisible(false);
+
+
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		JMenu menu = new JMenu("機能");
+		menuBar.add(menu);
+
+		mntmWantall = new JMenuItem("WantAll");
+		mntmWantall.addActionListener(new MenuActionListener());
+		menu.add(mntmWantall);
+
+		mntmInfodelete = new JMenuItem("InfoDelete");
+		mntmInfodelete.addActionListener(new MenuActionListener());
+
+		menu.add(mntmInfodelete);
 	}
+
 	public static void main(String[] args) {
 		MainFrame mf = new MainFrame();
 		mf.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		mf.setVisible(true);
 	}
-	public void PanelChange(JPanel jp, String str){
-		String name = jp.getName();
-		if(name==PanelNames[0]) {
-			wantAllPanel = (WantAllListPanel)jp; wantAllPanel.setVisible(false);
-		}
-		if(name==PanelNames[1]) {
-			flagChangePanel = (FlagChangeListPanel)jp; flagChangePanel.setVisible(false);
-		}
-		if(name==PanelNames[2]) {
-			infoDeletePanel = (InfoDeleteListPanel)jp; infoDeletePanel.setVisible(false);
-		}
-		if(str==PanelNames[0])
-			wantAllPanel.setVisible(true);
-		if(str==PanelNames[1])
-			flagChangePanel.setVisible(true);
-		if(str==PanelNames[2])
-			infoDeletePanel.setVisible(true);
 
+	private class MenuActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource() == mntmWantall)  {
+				System.out.println("WantAll");
+			}
+			if(event.getSource() == mntmInfodelete)  {
+				System.out.println("InfoDelete");
+				changePanel("InfoDelete");
+			}
+		}
+	}
+
+	public void changePanel(String panelName) {
+		if(panelName == "InfoDelete") {
+			getContentPane().removeAll();
+
+			getContentPane().add(infoDeletePanel, BorderLayout.NORTH);
+			infoDeletePanel.setVisible(true);
+			wantAllCtrl.setLayout(null);
+
+
+			getContentPane().add(wantAllCtrl, BorderLayout.CENTER);
+			wantAllCtrl.setLayout(null);
+
+			repaint();
+		}
 	}
 }

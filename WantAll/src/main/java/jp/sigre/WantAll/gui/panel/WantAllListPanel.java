@@ -36,8 +36,6 @@ public class WantAllListPanel extends JPanel {
 
 
 	public WantAllListPanel() {
-//		this.setName("wantAllPanel");
-//		//this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		this.setLayout(null);
 		this.setSize(400,200);
 
@@ -51,11 +49,6 @@ public class WantAllListPanel extends JPanel {
 
 		this.add(sp);
 
-		//getContentPane().add(p, BorderLayout.NORTH);
-
-		//getContentPane().add(panel, BorderLayout.CENTER);
-//
-//		this.setName("mp");
 
 	}
 
