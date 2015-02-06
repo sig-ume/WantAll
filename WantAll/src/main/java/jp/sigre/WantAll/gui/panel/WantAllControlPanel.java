@@ -27,7 +27,6 @@ public class WantAllControlPanel extends JPanel {
 	private JTextField releaseDateField;
 
 	private JButton insertButton;
-	private JButton searchButton;
 	private JButton urlInsertButton;
 	private JButton btnReset;
 
@@ -84,10 +83,6 @@ public class WantAllControlPanel extends JPanel {
 		lblDate.setBounds(359, 7, 50, 13);
 		this.add(lblDate);
 
-		searchButton = new JButton("Search");
-		searchButton.setBounds(80, 136, 91, 21);
-		searchButton.addActionListener(new ProductInfoListener());
-		this.add(searchButton);
 
 		textField = new JTextField();
 		textField.setBounds(113, 99, 340, 19);
@@ -118,9 +113,7 @@ public class WantAllControlPanel extends JPanel {
 						0);
 				listPanel.insertProductInfo(info);
 			}
-			if(event.getSource()  ==  searchButton)  {
-				listPanel.search();
-			}
+
 			if(event.getSource()  ==  urlInsertButton)  {
 				System.out.println(textField.getText());
 				ProductInfoBean info = new DownloadInfo().get(textField.getText());

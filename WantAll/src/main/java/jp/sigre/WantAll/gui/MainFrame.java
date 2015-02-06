@@ -11,9 +11,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import jp.sigre.WantAll.gui.panel.FlagChangeControlPanel;
 import jp.sigre.WantAll.gui.panel.FlagChangeListPanel;
 import jp.sigre.WantAll.gui.panel.InfoDeleteControlPanel;
 import jp.sigre.WantAll.gui.panel.InfoDeleteListPanel;
+import jp.sigre.WantAll.gui.panel.InfoInsertControlPanel;
+import jp.sigre.WantAll.gui.panel.InfoInsertListPanel;
 import jp.sigre.WantAll.gui.panel.WantAllControlPanel;
 import jp.sigre.WantAll.gui.panel.WantAllListPanel;
 
@@ -28,14 +31,23 @@ public class MainFrame extends JFrame {
 	WantAllListPanel wantAllPanel = new WantAllListPanel();
 	WantAllControlPanel wantAllCtrl = new WantAllControlPanel(wantAllPanel);
 	FlagChangeListPanel flagChangePanel = new FlagChangeListPanel();
+	FlagChangeControlPanel flagChangeCtrl = new FlagChangeControlPanel(flagChangePanel);
 	InfoDeleteListPanel infoDeletePanel = new InfoDeleteListPanel();
 	InfoDeleteControlPanel infoDeleteCtrl = new InfoDeleteControlPanel(infoDeletePanel);
+	InfoInsertListPanel infoInsertPanel = new InfoInsertListPanel();
+	InfoInsertControlPanel infoInsertCtrl = new InfoInsertControlPanel(infoInsertPanel);
 
 	JMenuItem mntmWantall;
 	JMenuItem mntmInfodelete;
+	JMenuItem mntmFlagChange;
+	JMenuItem mntmInfoInsert;
+
 
 	public MainFrame(){
 		this.setBounds(100, 100, 492, 400);
+
+		setTitle("WantAll");
+
 		//getContentPane().add(infoDeletePanel, BorderLayout.NORTH);
 		//infoDeletePanel.setLayout(null);
 		//this.add(wantAllPanel);wantAllPanel.setVisible(true);
@@ -61,8 +73,16 @@ public class MainFrame extends JFrame {
 
 		mntmInfodelete = new JMenuItem("InfoDelete");
 		mntmInfodelete.addActionListener(new MenuActionListener());
-
 		menu.add(mntmInfodelete);
+
+		mntmFlagChange = new JMenuItem("FlagChange");
+		mntmFlagChange.addActionListener(new MenuActionListener());
+		menu.add(mntmFlagChange);
+
+		mntmInfoInsert = new JMenuItem("InfoInsert");
+		mntmInfoInsert.addActionListener(new MenuActionListener());
+		menu.add(mntmInfoInsert);
+
 	}
 
 	public static void main(String[] args) {
@@ -74,34 +94,98 @@ public class MainFrame extends JFrame {
 	private class MenuActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			if(event.getSource() == mntmWantall)  {
-				System.out.println("WantAll");
+				changePanel("WantAll");
 			}
 			if(event.getSource() == mntmInfodelete)  {
 				//System.out.println("InfoDelete");
 				changePanel("InfoDelete");
+			}
+			if(event.getSource() == mntmFlagChange)  {
+				//System.out.println("InfoDelete");
+				changePanel("FlagChange");
+			}
+			if(event.getSource() == mntmInfoInsert)  {
+				//System.out.println("InfoDelete");
+				changePanel("InfoInsert");
 			}
 		}
 	}
 
 	public void changePanel(String panelName) {
 		if(panelName == "InfoDelete") {
-			this.setBounds(100, 100, 492, 400);
-
 			getContentPane().removeAll();
 
+			setTitle(panelName);
+
 			getContentPane().add(infoDeletePanel, BorderLayout.NORTH);
-			infoDeletePanel.setVisible(true);
+			//infoDeletePanel.setVisible(true);
 
 			getContentPane().add(infoDeleteCtrl, BorderLayout.CENTER);
-			infoDeleteCtrl.setVisible(true);
+			//infoDeleteCtrl.setVisible(true);
 			infoDeleteCtrl.setLayout(null);
 
 			//repaint();
+			//revalidate();
+			setVisible(true);
+			repaint();
 			revalidate();
 		}
 
 		if (panelName == "FlagChange") {
+			getContentPane().removeAll();
 
+			setTitle(panelName);
+
+			getContentPane().add(flagChangePanel, BorderLayout.NORTH);
+			//flagChangePanel.setVisible(true);
+
+			getContentPane().add(flagChangeCtrl, BorderLayout.CENTER);
+			//flagChangeCtrl.setVisible(true);
+			flagChangeCtrl.setLayout(null);
+
+			//repaint();
+			//revalidate();
+			setVisible(true);
+			repaint();
+			revalidate();
+		}
+
+		if (panelName == "WantAll") {
+			getContentPane().removeAll();
+
+			setTitle(panelName);
+
+			getContentPane().add(wantAllPanel, BorderLayout.NORTH);
+			//wantAllPanel.setVisible(true);
+
+			getContentPane().add(wantAllCtrl, BorderLayout.CENTER);
+			//wantAllCtrl.setVisible(true);
+			wantAllCtrl.setLayout(null);
+
+			//repaint();
+			//revalidate();
+			setVisible(true);
+			repaint();
+			revalidate();
+		}
+
+		if (panelName == "InfoInsert") {
+			getContentPane().removeAll();
+
+			setTitle(panelName);
+
+			getContentPane().add(infoInsertPanel, BorderLayout.NORTH);
+			//wantAllPanel.setVisible(true);
+
+			getContentPane().add(infoInsertCtrl, BorderLayout.CENTER);
+			//wantAllCtrl.setVisible(true);
+			infoInsertCtrl.setLayout(null);
+
+			//repaint();
+			//revalidate();
+			setVisible(true);
+			repaint();
+			revalidate();
 		}
 	}
 }
