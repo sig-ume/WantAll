@@ -12,6 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import jp.sigre.WantAll.gui.panel.FlagChangeListPanel;
+import jp.sigre.WantAll.gui.panel.InfoDeleteControlPanel;
 import jp.sigre.WantAll.gui.panel.InfoDeleteListPanel;
 import jp.sigre.WantAll.gui.panel.WantAllControlPanel;
 import jp.sigre.WantAll.gui.panel.WantAllListPanel;
@@ -28,13 +29,15 @@ public class MainFrame extends JFrame {
 	WantAllControlPanel wantAllCtrl = new WantAllControlPanel(wantAllPanel);
 	FlagChangeListPanel flagChangePanel = new FlagChangeListPanel();
 	InfoDeleteListPanel infoDeletePanel = new InfoDeleteListPanel();
+	InfoDeleteControlPanel infoDeleteCtrl = new InfoDeleteControlPanel(infoDeletePanel);
 
 	JMenuItem mntmWantall;
 	JMenuItem mntmInfodelete;
 
 	public MainFrame(){
 		this.setBounds(100, 100, 492, 400);
-
+		//getContentPane().add(infoDeletePanel, BorderLayout.NORTH);
+		//infoDeletePanel.setLayout(null);
 		//this.add(wantAllPanel);wantAllPanel.setVisible(true);
 		getContentPane().add(wantAllPanel, BorderLayout.NORTH);
 		wantAllPanel.setVisible(true);
@@ -42,8 +45,7 @@ public class MainFrame extends JFrame {
 		getContentPane().add(wantAllCtrl, BorderLayout.CENTER);
 		wantAllCtrl.setLayout(null);
 		//this.add(flagChangePanel);
-		//getContentPane().add(flagChangePanel, BorderLayout.NORTH);
-		//flagChangePanel.setVisible(false);
+
 		//this.add(infoDeltePanel);
 
 
@@ -75,7 +77,7 @@ public class MainFrame extends JFrame {
 				System.out.println("WantAll");
 			}
 			if(event.getSource() == mntmInfodelete)  {
-				System.out.println("InfoDelete");
+				//System.out.println("InfoDelete");
 				changePanel("InfoDelete");
 			}
 		}
@@ -83,17 +85,23 @@ public class MainFrame extends JFrame {
 
 	public void changePanel(String panelName) {
 		if(panelName == "InfoDelete") {
+			this.setBounds(100, 100, 492, 400);
+
 			getContentPane().removeAll();
 
 			getContentPane().add(infoDeletePanel, BorderLayout.NORTH);
 			infoDeletePanel.setVisible(true);
-			wantAllCtrl.setLayout(null);
 
+			getContentPane().add(infoDeleteCtrl, BorderLayout.CENTER);
+			infoDeleteCtrl.setVisible(true);
+			infoDeleteCtrl.setLayout(null);
 
-			getContentPane().add(wantAllCtrl, BorderLayout.CENTER);
-			wantAllCtrl.setLayout(null);
+			//repaint();
+			revalidate();
+		}
 
-			repaint();
+		if (panelName == "FlagChange") {
+
 		}
 	}
 }

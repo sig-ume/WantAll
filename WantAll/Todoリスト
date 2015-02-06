@@ -1,18 +1,7 @@
 ●やりたいこと
-
-・確認ポップアップ（完）
-	・削除予定データ表示
-		・詳細ボタンとか作りたいね
-
-
-・ViewとModelを分離
-	・ボタン処理に必要なデータを引数として渡す
-	・ボタン処理用クラス作成
-
-
 ・変更履歴機能
-	・3画面変更版作成
 ・GUI画面変更
+	・3画面変更版作成
 
 ・複数サイト検索機能
 ・作者ブックマーク
@@ -25,12 +14,15 @@
 
 ・定数管理クラス作成
 
-・共通ボタンクラス
+
 ・Jar出力して動作チェック→EXE化
 http://makotojun.blog52.fc2.com/blog-entry-7.html
 
+●調査/バグ
 ・UnparsedDate
 http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1&smid=A3EFI0A1TYYBWT
+
+・フラグnullだった場合の表示を作り直す
 
 
 ●やりおわったこと
@@ -38,8 +30,6 @@ http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1
 ・変更履歴機能
 	・WantAll→InfoDeleteTable表示
 
-●調査/バグ
-・フラグnullだった場合の表示を作り直す
 
 ●調査済み
 ・表データ変更→取得した場合に取得されたデータがどうなるか
@@ -47,6 +37,14 @@ http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1
 ・検索ワードに空白が含まれてたらエラー
 	・MakeURL.removeBlank
 
+●やらない
+・ViewとModelを分離
+	・ボタン処理に必要なデータを引数として渡す
+	・ボタン処理用クラス作成
+・確認ポップアップ（完）
+	・削除予定データ表示
+		・詳細ボタンとか作りたいね
+・共通ボタンクラス
 
 その他
 ローリングガールズ　ひとにやさしく
