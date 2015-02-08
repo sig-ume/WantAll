@@ -1,7 +1,4 @@
 ●やりたいこと
-
-・入力欄のValidator
-
 ・swing JtabbedPane
 http://stackoverflow.com/questions/21750314/how-to-add-tabs-to-jtabbedpane-using-windowbuilder
 
@@ -21,8 +18,6 @@ http://stackoverflow.com/questions/21750314/how-to-add-tabs-to-jtabbedpane-using
 
 ・定数管理クラス作成
 
-
-
 ・Jar出力して動作チェック→EXE化
 http://makotojun.blog52.fc2.com/blog-entry-7.html
 
@@ -31,13 +26,12 @@ http://makotojun.blog52.fc2.com/blog-entry-7.html
 ・UnparsedDate
 http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1&smid=A3EFI0A1TYYBWT
 
-・フラグnullだった場合の表示を作り直す→フラグはNullを許容しない設定に変更
 
 ・Int型のDBデータにString型数値で放り込んだときに問題なく動作するか。
 
 ●やりおわったこと
-
-
+・フラグnullだった場合の表示を作り直す→フラグはNullを許容しない設定に変更
+・MenuBarに各機能を直接表示する形に変更。
 
 ●調査済み
 ・表データ変更→取得した場合に取得されたデータがどうなるか

@@ -42,6 +42,10 @@ public class MainFrame extends JFrame {
 	JMenuItem mntmFlagChange;
 	JMenuItem mntmInfoInsert;
 
+	JMenu wantAllMenu;
+	JMenu infoInsertMenu;
+	JMenu infoDeleteMenu;
+	JMenu flagChangeMenu;
 
 	public MainFrame(){
 		this.setBounds(100, 100, 492, 400);
@@ -64,25 +68,44 @@ public class MainFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu menu = new JMenu("機能");
-		menuBar.add(menu);
+//		wantAllMenu = new JMenu("WantAll");
+//		wantAllMenu.addActionListener(new MenuActionListener());
+//		menuBar.add(wantAllMenu);
+//
+//		infoDeleteMenu = new JMenu("InfoDelete");
+//		infoDeleteMenu.addActionListener(new MenuActionListener());
+//		menuBar.add(infoDeleteMenu);
+//
+//		infoInsertMenu = new JMenu("InfoInsert");
+//		infoInsertMenu.addActionListener(new MenuActionListener());
+//		menuBar.add(infoInsertMenu);
+//
+//		flagChangeMenu = new JMenu("FlagChange");
+//		flagChangeMenu.addActionListener(new MenuActionListener());
+//		menuBar.add(flagChangeMenu);
+
+		//JMenu menu = new JMenu("機能");
+		//menuBar.add(menu);
 
 		mntmWantall = new JMenuItem("WantAll");
 		mntmWantall.addActionListener(new MenuActionListener());
-		menu.add(mntmWantall);
+		//menu.add(mntmWantall);
+		menuBar.add(mntmWantall);
 
 		mntmInfodelete = new JMenuItem("InfoDelete");
 		mntmInfodelete.addActionListener(new MenuActionListener());
-		menu.add(mntmInfodelete);
+		//menu.add(mntmInfodelete);
+		menuBar.add(mntmInfodelete);
 
 		mntmFlagChange = new JMenuItem("FlagChange");
 		mntmFlagChange.addActionListener(new MenuActionListener());
-		menu.add(mntmFlagChange);
+		//menu.add(mntmFlagChange);
+		menuBar.add(mntmFlagChange);
 
 		mntmInfoInsert = new JMenuItem("InfoInsert");
 		mntmInfoInsert.addActionListener(new MenuActionListener());
-		menu.add(mntmInfoInsert);
-
+		//menu.add(mntmInfoInsert);
+		menuBar.add(mntmInfoInsert);
 	}
 
 	public static void main(String[] args) {
@@ -93,18 +116,18 @@ public class MainFrame extends JFrame {
 
 	private class MenuActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
-			if(event.getSource() == mntmWantall)  {
+			if(event.getSource() == mntmWantall | event.getSource() == wantAllMenu)  {
 				changePanel("WantAll");
 			}
-			if(event.getSource() == mntmInfodelete)  {
+			if(event.getSource() == mntmInfodelete | event.getSource() == infoDeleteMenu)  {
 				//System.out.println("InfoDelete");
 				changePanel("InfoDelete");
 			}
-			if(event.getSource() == mntmFlagChange)  {
+			if(event.getSource() == mntmFlagChange | event.getSource() == flagChangeMenu)  {
 				//System.out.println("InfoDelete");
 				changePanel("FlagChange");
 			}
-			if(event.getSource() == mntmInfoInsert)  {
+			if(event.getSource() == mntmInfoInsert | event.getSource() == infoInsertMenu) {
 				//System.out.println("InfoDelete");
 				changePanel("InfoInsert");
 			}
