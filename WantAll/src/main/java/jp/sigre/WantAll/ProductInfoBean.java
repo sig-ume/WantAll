@@ -14,7 +14,7 @@ public class ProductInfoBean {
 	private String title;
 	private String author;
 	private String url;
-	private int    releaseDate;
+	private int    releaseDate = 18000101;
 	private int    flag; //表示要否etc
 
 	public ProductInfoBean(int id, String title, String author, String url, int releaseDate, int flag) {

@@ -5,13 +5,17 @@ package jp.sigre.WantAll.gui.panel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import jp.sigre.WantAll.ProductInfoBean;
+import jp.sigre.WantAll.database.productinfo.ConnectDB;
 import jp.sigre.WantAll.downloadinfo.parse.DownloadInfo;
 import jp.sigre.WantAll.gui.ProductInfoTableModel;
 
@@ -44,6 +48,7 @@ public class InfoInsertControlPanel extends JPanel {
 
 		titleField = new JTextField();
 		titleField.setBounds(12, 30, 96, 19);
+		//StitleField.setInputVerifier(new ProductTitleValidator());
 		this.add(titleField);
 		titleField.setColumns(10);
 
@@ -105,13 +110,20 @@ public class InfoInsertControlPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			if(event.getSource()  ==  insertButton)  {
-				ProductInfoBean info = new ProductInfoBean(	-1,
-						titleField.getText(),
-						authorField.getText(),
-						urlField.getText(),
-						Integer.parseInt(releaseDateField.getText()),
-						0);
-				listPanel.insertProductInfo(info);
+
+				if (validateInput()) {
+					String releaseStr = releaseDateField.getText();
+					int release = releaseStr.equals("") ? 00000000 : Integer.parseInt(releaseStr);
+					ProductInfoBean info = new ProductInfoBean(	-1,
+							titleField.getText(),
+							authorField.getText(),
+							urlField.getText(),
+							release,
+							0);
+					listPanel.insertProductInfo(info);
+				} else {
+					JOptionPane.showMessageDialog(getParent(), "考え直せ。");
+				}
 			}
 
 			if(event.getSource()  ==  urlInsertButton)  {
@@ -124,5 +136,59 @@ public class InfoInsertControlPanel extends JPanel {
 				listPanel.resetTable();
 			}
 		}
+	}
+
+	private boolean validateInput() {
+		return validateTitle() && validateReleaseDate();
+	}
+
+	private boolean validateTitle() {
+		boolean result = false;
+
+		String title = titleField.getText();
+		if (title.length() == 0) {
+			result = false;
+		} else {
+			result = true;
+		}
+
+		System.out.println("isexist " + isAlreadyExist(title));
+
+		return result && !isAlreadyExist(title);
+	}
+
+	private boolean validateReleaseDate() {
+		boolean lengthResult = false;
+		boolean dateResult   = false;
+
+		String dateStr = releaseDateField.getText();
+
+		if (dateStr.length() == 0) {
+			lengthResult = true;
+			dateResult   = true;
+		} else if (dateStr.length() == 8) {
+			lengthResult = true;
+
+			try {
+				SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+				format.setLenient(false);
+	            format.parse(dateStr);
+	            dateResult = true;
+	        } catch (ParseException e) {
+	            dateResult = false;
+	        }
+		}
+
+		System.out.println("length"+ lengthResult);
+		System.out.println("date"+ dateResult);
+
+
+		return lengthResult && dateResult;
+	}
+
+	private boolean isAlreadyExist(String title) {
+		boolean result =  new ConnectDB().isExist(title);
+
+		return result;
 	}
 }

@@ -44,10 +44,10 @@ public class ConnectDB {
 		return stmt;
 	}
 
-		/**
-		 * ProductInfoTableのデータをBeanに格納してリスト化
-		 * @return
-		 */
+	/**
+	 * ProductInfoTableのデータをBeanに格納してリスト化
+	 * @return
+	 */
 	public List<ProductInfoBean> getProductInfoList() {
 		try {
 			con = getConnection();
@@ -67,20 +67,20 @@ public class ConnectDB {
 	 * ProductInfoTableのデータをBeanに格納してリスト化
 	 * @return
 	 */
-public List<ProductInfoBean> getProductInfoListAll() {
-	try {
-		con = getConnection();
-		String sql = "SELECT * FROM ProductInfo;";
-		PreparedStatement pstmt = con.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		return new ConvertResultSet().convertProjectInfo(rs);
-	} catch (SQLException e1) {
-		e1.printStackTrace();
-	}  finally {
-		closeStatement();
+	public List<ProductInfoBean> getProductInfoListAll() {
+		try {
+			con = getConnection();
+			String sql = "SELECT * FROM ProductInfo;";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			return new ConvertResultSet().convertProjectInfo(rs);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}  finally {
+			closeStatement();
+		}
+		return null;
 	}
-	return null;
-}
 
 	/**
 	 * 商品を1件DBにInsertする
@@ -143,12 +143,12 @@ public List<ProductInfoBean> getProductInfoListAll() {
 		try {
 			con = getConnection();
 			String sql =  "DELETE FROM ProductInfo "
-						+ "WHERE	id = ?"
-						+ "AND		title = ?"
-						+ "AND		author = ?"
-						+ "AND		url = ?"
-						+ "AND		releasedate = ?"
-						+ "AND		flg = ?;";
+					+ "WHERE	id = ?"
+					+ "AND		title = ?"
+					+ "AND		author = ?"
+					+ "AND		url = ?"
+					+ "AND		releasedate = ?"
+					+ "AND		flg = ?;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt   (1, info.getId());
 			pstmt.setString(2, info.getTitle());
@@ -170,9 +170,9 @@ public List<ProductInfoBean> getProductInfoListAll() {
 		try {
 			con = getConnection();
 			String sql =  "UPDATE  ProductInfo "
-						+ "SET 		flg = ?"
-						+ "WHERE	id = ?";
-;
+					+ "SET 		flg = ?"
+					+ "WHERE	id = ?";
+			;
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt   (1, updateFlg);
 			pstmt.setInt   (2, id);
@@ -186,31 +186,52 @@ public List<ProductInfoBean> getProductInfoListAll() {
 		return 0;
 	}
 
-	/**
-	 * DB切断。
-	 * @return
-	 */
-	public boolean closeStatement() {
+	public boolean isExist(String title) {
+		boolean result = false;
+
 		try {
-			if (stmt != null) stmt.close();
-			if (con  != null) con.close();
+			con = getConnection();
+			String sql =  "SELECT * FROM ProductInfo "
+					+ "WHERE title = ?;";
+
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, title);
+
+			result = pstmt.executeQuery().next();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-			return false;
+		}  finally {
+			closeStatement();
 		}
-		return true;
+		return result;
 	}
 
-	public Connection getConnection() throws SQLException{
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		con = DriverManager
-				.getConnection("jdbc:sqlite:db/ProductInfo.db");
-		return con;
+
+/**
+ * DB切断。
+ * @return
+ */
+public boolean closeStatement() {
+	try {
+		if (stmt != null) stmt.close();
+		if (con  != null) con.close();
+	} catch (SQLException e1) {
+		e1.printStackTrace();
+		return false;
 	}
+	return true;
+}
+
+public Connection getConnection() throws SQLException{
+	try {
+		Class.forName("org.sqlite.JDBC");
+	} catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	con = DriverManager
+			.getConnection("jdbc:sqlite:db/ProductInfo.db");
+	return con;
+}
 
 
 }
