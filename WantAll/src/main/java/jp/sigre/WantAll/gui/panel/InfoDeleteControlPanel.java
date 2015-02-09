@@ -16,9 +16,9 @@ import javax.swing.JPanel;
 public class InfoDeleteControlPanel extends JPanel {
 	JButton deleteButton;
 	JButton delete9Button;
-	InfoDeleteListPanel panel;
+	InfoDeleteTablePanel panel;
 
-	public InfoDeleteControlPanel(InfoDeleteListPanel panel) {
+	public InfoDeleteControlPanel(InfoDeleteTablePanel panel) {
 		this.panel = panel;
 
 		this.setLayout(null);

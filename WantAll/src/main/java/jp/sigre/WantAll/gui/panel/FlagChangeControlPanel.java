@@ -24,9 +24,9 @@ public class FlagChangeControlPanel extends JPanel {
 	JButton searchButton;
 	JComboBox<String> combo;
 
-	FlagChangeListPanel panel;
+	FlagChangeTablePanel panel;
 
-	public FlagChangeControlPanel(FlagChangeListPanel panel) {
+	public FlagChangeControlPanel(FlagChangeTablePanel panel) {
 		this.panel = panel;
 		this.setLayout(null);
 

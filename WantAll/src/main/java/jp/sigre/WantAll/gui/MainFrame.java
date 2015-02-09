@@ -12,13 +12,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import jp.sigre.WantAll.gui.panel.FlagChangeControlPanel;
-import jp.sigre.WantAll.gui.panel.FlagChangeListPanel;
+import jp.sigre.WantAll.gui.panel.FlagChangeTablePanel;
 import jp.sigre.WantAll.gui.panel.InfoDeleteControlPanel;
-import jp.sigre.WantAll.gui.panel.InfoDeleteListPanel;
+import jp.sigre.WantAll.gui.panel.InfoDeleteTablePanel;
 import jp.sigre.WantAll.gui.panel.InfoInsertControlPanel;
-import jp.sigre.WantAll.gui.panel.InfoInsertListPanel;
+import jp.sigre.WantAll.gui.panel.InfoInsertTablePanel;
 import jp.sigre.WantAll.gui.panel.WantAllControlPanel;
-import jp.sigre.WantAll.gui.panel.WantAllListPanel;
+import jp.sigre.WantAll.gui.panel.WantAllTablePanel;
 
 /**
  * @author sigre
@@ -28,19 +28,20 @@ public class MainFrame extends JFrame {
 
 	public String[] PanelNames = {"main","Sub1","Sub2","Sub3"};
 	//WantAllPanel wantAllPanel = new WantAllPanel(this, "main");
-	WantAllListPanel wantAllPanel = new WantAllListPanel();
+	WantAllTablePanel wantAllPanel = new WantAllTablePanel();
 	WantAllControlPanel wantAllCtrl = new WantAllControlPanel(wantAllPanel);
-	FlagChangeListPanel flagChangePanel = new FlagChangeListPanel();
+	FlagChangeTablePanel flagChangePanel = new FlagChangeTablePanel();
 	FlagChangeControlPanel flagChangeCtrl = new FlagChangeControlPanel(flagChangePanel);
-	InfoDeleteListPanel infoDeletePanel = new InfoDeleteListPanel();
+	InfoDeleteTablePanel infoDeletePanel = new InfoDeleteTablePanel();
 	InfoDeleteControlPanel infoDeleteCtrl = new InfoDeleteControlPanel(infoDeletePanel);
-	InfoInsertListPanel infoInsertPanel = new InfoInsertListPanel();
+	InfoInsertTablePanel infoInsertPanel = new InfoInsertTablePanel();
 	InfoInsertControlPanel infoInsertCtrl = new InfoInsertControlPanel(infoInsertPanel);
 
 	JMenuItem mntmWantall;
 	JMenuItem mntmInfodelete;
 	JMenuItem mntmFlagChange;
 	JMenuItem mntmInfoInsert;
+	JMenuItem mntmCheckBox;
 
 	JMenu wantAllMenu;
 	JMenu infoInsertMenu;
@@ -106,6 +107,10 @@ public class MainFrame extends JFrame {
 		mntmInfoInsert.addActionListener(new MenuActionListener());
 		//menu.add(mntmInfoInsert);
 		menuBar.add(mntmInfoInsert);
+
+		mntmCheckBox = new JMenuItem("CheckBox");
+		mntmCheckBox.addActionListener(new MenuActionListener());
+		menuBar.add(mntmCheckBox);
 	}
 
 	public static void main(String[] args) {
@@ -116,20 +121,23 @@ public class MainFrame extends JFrame {
 
 	private class MenuActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
-			if(event.getSource() == mntmWantall | event.getSource() == wantAllMenu)  {
+			if (event.getSource() == mntmWantall | event.getSource() == wantAllMenu)  {
 				changePanel("WantAll");
 			}
-			if(event.getSource() == mntmInfodelete | event.getSource() == infoDeleteMenu)  {
+			if (event.getSource() == mntmInfodelete | event.getSource() == infoDeleteMenu)  {
 				//System.out.println("InfoDelete");
 				changePanel("InfoDelete");
 			}
-			if(event.getSource() == mntmFlagChange | event.getSource() == flagChangeMenu)  {
+			if (event.getSource() == mntmFlagChange | event.getSource() == flagChangeMenu)  {
 				//System.out.println("InfoDelete");
 				changePanel("FlagChange");
 			}
-			if(event.getSource() == mntmInfoInsert | event.getSource() == infoInsertMenu) {
+			if (event.getSource() == mntmInfoInsert | event.getSource() == infoInsertMenu) {
 				//System.out.println("InfoDelete");
 				changePanel("InfoInsert");
+			}
+			if (event.getSource() == mntmCheckBox) {
+
 			}
 		}
 	}

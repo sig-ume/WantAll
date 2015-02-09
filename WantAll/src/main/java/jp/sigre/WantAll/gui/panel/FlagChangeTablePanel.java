@@ -1,46 +1,15 @@
 package jp.sigre.WantAll.gui.panel;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 import jp.sigre.WantAll.database.productinfo.ConnectDB;
-import jp.sigre.WantAll.gui.ProductInfoTableModel;
 
 
-public class FlagChangeListPanel extends JPanel {
-	private JTable table;
-
-	String[] columnNames;
-	String[][] tabledata;
-	JScrollPane sp = null;
-	ProductInfoTableModel model;
-	String selected;
-
-	JButton searchButton;
-	JComboBox<String> combo;
-
-	public FlagChangeListPanel() {
-		this.setLayout(null);
-		this.setSize(400,200);
-
-		model = new ProductInfoTableModel();
-		model.setProductInfoAll(false);
-		table = new JTable(model);
-
-		sp = new JScrollPane(table);
-		sp.setPreferredSize(new Dimension(400, 140));
-		this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		this.add(sp);
+public class FlagChangeTablePanel extends TablePanel {
 
 
+	public FlagChangeTablePanel() {
+		super();
 	}
 
 	public void updateDialog(String selected) {
@@ -74,6 +43,12 @@ public class FlagChangeListPanel extends JPanel {
 			}
 		}
 		table.repaint();
+	}
+
+	@Override
+	public void setProductInfo() {
+		model.setProductInfoAll(false);
+
 	}
 
 

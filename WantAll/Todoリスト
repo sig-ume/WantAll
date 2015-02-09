@@ -1,11 +1,7 @@
 ●やりたいこと
-・swing JtabbedPane
-http://stackoverflow.com/questions/21750314/how-to-add-tabs-to-jtabbedpane-using-windowbuilder
-
 ・MainFrameの画面変更リファクタリング
 
 ・変更履歴機能
-
 
 ・複数サイト検索機能
 ・作者ブックマーク
@@ -30,14 +26,17 @@ http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1
 ・Int型のDBデータにString型数値で放り込んだときに問題なく動作するか。
 
 ●やりおわったこと
-・フラグnullだった場合の表示を作り直す→フラグはNullを許容しない設定に変更
-・MenuBarに各機能を直接表示する形に変更。
+・Panelクラスの名前変更
+・Panelの共通継承元作成
+
 
 ●調査済み
 ・表データ変更→取得した場合に取得されたデータがどうなるか
 	・どうにもならん
 ・検索ワードに空白が含まれてたらエラー
 	・MakeURL.removeBlank
+・swing JtabbedPane
+http://stackoverflow.com/questions/21750314/how-to-add-tabs-to-jtabbedpane-using-windowbuilder
 
 ●やらない
 ・ViewとModelを分離

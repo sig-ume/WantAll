@@ -40,9 +40,9 @@ public class InfoInsertControlPanel extends JPanel {
 
 	ProductInfoTableModel model;
 
-	InfoInsertListPanel listPanel;
+	InfoInsertTablePanel listPanel;
 
-	public InfoInsertControlPanel(InfoInsertListPanel listPanel) {
+	public InfoInsertControlPanel(InfoInsertTablePanel listPanel) {
 		this.listPanel = listPanel;
 		model = new ProductInfoTableModel();
 

@@ -24,9 +24,9 @@ public class WantAllControlPanel extends JPanel {
 
 	ProductInfoTableModel model;
 
-	WantAllListPanel listPanel;
+	WantAllTablePanel listPanel;
 
-	public WantAllControlPanel(WantAllListPanel listPanel) {
+	public WantAllControlPanel(WantAllTablePanel listPanel) {
 		this.listPanel = listPanel;
 		model = new ProductInfoTableModel();
 
