@@ -24,12 +24,9 @@ http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1
 ・Int型のDBデータにString型数値で放り込んだときに問題なく動作するか。
 
 ●やりおわったこと
-・MainFrameの画面変更リファクタリング
-・チェックボックス全選択or全解除ボタン
-・Resetを共通化
+
 ●調査/バグ
-・WantAllのResetが不調
-→実装してないだけだった。
+
 
 ●調査済み
 ・表データ変更→取得した場合に取得されたデータがどうなるか
