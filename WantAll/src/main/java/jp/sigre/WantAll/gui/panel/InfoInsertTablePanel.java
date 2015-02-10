@@ -5,7 +5,6 @@ package jp.sigre.WantAll.gui.panel;
 
 import jp.sigre.WantAll.ProductInfoBean;
 import jp.sigre.WantAll.database.productinfo.ConnectDB;
-import jp.sigre.WantAll.gui.ProductInfoTableModel;
 
 
 
@@ -14,6 +13,7 @@ import jp.sigre.WantAll.gui.ProductInfoTableModel;
  *
  */
 public class InfoInsertTablePanel extends TablePanel {
+	boolean checkbox;
 
 	public InfoInsertTablePanel() {
 		super();
@@ -31,17 +31,6 @@ public class InfoInsertTablePanel extends TablePanel {
 
 		return true;
 	}
-
-
-
-	public void resetTable() {
-		//remove(sp);
-		model = new ProductInfoTableModel();
-		model.setProductInfo(true);
-		table.setModel(model);
-	}
-
-
 
 	@Override
 	public void setProductInfo() {

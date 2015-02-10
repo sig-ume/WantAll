@@ -7,13 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 /**
  * @author sigre
  *
  */
-public class InfoDeleteControlPanel extends JPanel {
+public class InfoDeleteControlPanel extends ControlPanel {
 	JButton deleteButton;
 	JButton delete9Button;
 	InfoDeleteTablePanel panel;

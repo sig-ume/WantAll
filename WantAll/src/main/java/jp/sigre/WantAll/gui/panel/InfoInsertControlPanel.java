@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import jp.sigre.WantAll.ProductInfoBean;
@@ -23,7 +22,7 @@ import jp.sigre.WantAll.gui.ProductInfoTableModel;
  * @author sigre
  *
  */
-public class InfoInsertControlPanel extends JPanel {
+public class InfoInsertControlPanel extends ControlPanel {
 
 	private JTextField titleField;
 	private JTextField authorField;

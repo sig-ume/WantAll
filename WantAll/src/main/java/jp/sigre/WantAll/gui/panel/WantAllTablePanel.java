@@ -13,6 +13,7 @@ import jp.sigre.WantAll.websearch.CallBrowser;
  *
  */
 public class WantAllTablePanel extends TablePanel {
+	boolean checkbox = true;
 
 	public WantAllTablePanel() {
 		super();
@@ -41,4 +42,5 @@ public class WantAllTablePanel extends TablePanel {
 		model.setProductInfo(true);
 
 	}
+
 }

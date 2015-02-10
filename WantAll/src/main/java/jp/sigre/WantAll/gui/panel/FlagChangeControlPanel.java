@@ -9,7 +9,6 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 
 import jp.sigre.WantAll.gui.ProductInfoTableModel;
 
@@ -17,7 +16,7 @@ import jp.sigre.WantAll.gui.ProductInfoTableModel;
  * @author sigre
  *
  */
-public class FlagChangeControlPanel extends JPanel {
+public class FlagChangeControlPanel extends ControlPanel {
 	ProductInfoTableModel model;
 	String selected;
 

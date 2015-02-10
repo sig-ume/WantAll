@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import jp.sigre.WantAll.gui.ProductInfoTableModel;
 
@@ -15,7 +14,7 @@ import jp.sigre.WantAll.gui.ProductInfoTableModel;
  * @author sigre
  *
  */
-public class WantAllControlPanel extends JPanel {
+public class WantAllControlPanel extends ControlPanel {
 
 
 	private JButton searchButton;
@@ -51,6 +50,9 @@ public class WantAllControlPanel extends JPanel {
 
 			if(event.getSource()  ==  searchButton)  {
 				listPanel.search();
+			}
+			if(event.getSource() == btnReset) {
+				listPanel.resetTable();
 			}
 
 		}

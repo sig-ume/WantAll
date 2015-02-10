@@ -23,6 +23,7 @@ public abstract class TablePanel extends JPanel {
 	ProductInfoTableModel model;
 
 	boolean flgCheckAll = true;
+	boolean checkbox = true;
 
 	public TablePanel() {
 		this.setLayout(null);
@@ -51,4 +52,9 @@ public abstract class TablePanel extends JPanel {
 		flgCheckAll = !flgCheckAll;
 		return flgCheckAll;
 	}
-}
+
+	public void resetTable() {
+		model = new ProductInfoTableModel();
+		setProductInfo();
+		table.setModel(model);
+	}}
