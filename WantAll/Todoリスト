@@ -1,4 +1,5 @@
 ●やりたいこと
+・URL版Validator
 ・DBファイルの置き換えインポート
 ・DBファイルがない初期状態でのDB作成
 ・Hibernate実装版
@@ -18,22 +19,19 @@
 http://makotojun.blog52.fc2.com/blog-entry-7.html
 
 ●調査/バグ
-
-・UnparsedDate
-http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1&smid=A3EFI0A1TYYBWT
-
-
+・Deleteおかしい
+	・複数選択した場合、一部しか削除されない
+・Kindle版Insertで、著者が取得できない
 ・Int型のDBデータにString型数値で放り込んだときに問題なく動作するか。
 
 ●やりおわったこと
-・一部のクラス、パッケージの整理
-・DBファイルエクスポート
-・DBファイルインポート
-・DBファイルエクスポートリファクタリング
 
 
 ●調査/バグ
-
+・DBからTableModelにデータを入力する際に変な床に入ってる。
+・インポートがおかしい
+・UnparsedDate
+http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1&smid=A3EFI0A1TYYBWT
 
 ●調査済み
 ・表データ変更→取得した場合に取得されたデータがどうなるか

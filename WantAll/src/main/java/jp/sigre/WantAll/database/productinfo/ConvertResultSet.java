@@ -36,8 +36,8 @@ public class ConvertResultSet {
 		info.setId			(rs.getInt	 (1));
 		info.setTitle		(rs.getString(2));
 		info.setAuthor		(rs.getString(3));
-		info.setReleaseDate	(rs.getInt	 (4));
-		info.setUrl			(rs.getString(5));
+		info.setUrl			(rs.getString(4));
+		info.setReleaseDate	(rs.getInt	 (5));
 		info.setFlag		(rs.getInt	 (6));
 //		info.setId			(rs.getInt	 ("Id"));
 //		info.setTitle		(rs.getString("Title"));

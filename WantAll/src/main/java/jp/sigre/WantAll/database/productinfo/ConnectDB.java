@@ -135,7 +135,7 @@ public class ConnectDB {
 	}
 
 	/**
-	 * 商品を1件DBにInsertする
+	 * 商品を1件DBからDeleteする
 	 * @param info
 	 * @return 更新件数
 	 */
@@ -148,7 +148,8 @@ public class ConnectDB {
 					+ "AND		author = ?"
 					+ "AND		url = ?"
 					+ "AND		releasedate = ?"
-					+ "AND		flg = ?;";
+					+ "AND		flg = ?;"
+					;
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt   (1, info.getId());
 			pstmt.setString(2, info.getTitle());

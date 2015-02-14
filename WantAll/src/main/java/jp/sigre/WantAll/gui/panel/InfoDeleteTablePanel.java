@@ -42,7 +42,7 @@ public class InfoDeleteTablePanel extends TablePanel {
 					model.removeRow(row);
 					row--;
 				} else {
-					System.out.println(info.getInfoAsAry().toString());
+					System.out.println(info.getInfoAsAry().toString() + " " + count);
 				}
 			}
 		}
@@ -58,7 +58,7 @@ public class InfoDeleteTablePanel extends TablePanel {
 					System.out.println("remove");
 					model.removeRow(row);
 				} else {
-					System.out.println(info.getInfoAsAry().toString());
+					System.out.println(info.getInfoAsAry().toString() + " " + count);
 				}
 			}
 		}
