@@ -1,4 +1,4 @@
-package jp.sigre.WantAll.gui;
+package jp.sigre.WantAll.gui.standalone;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import jp.sigre.WantAll.database.productinfo.ConnectDB;
+import jp.sigre.WantAll.gui.ProductInfoTableModel;
 
 public class FlagChangeGui extends JFrame {
 

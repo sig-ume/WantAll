@@ -1,4 +1,4 @@
-package jp.sigre.WantAll.gui;
+package jp.sigre.WantAll.gui.standalone;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import jp.sigre.WantAll.ProductInfoBean;
 import jp.sigre.WantAll.database.productinfo.ConnectDB;
 import jp.sigre.WantAll.downloadinfo.parse.DownloadInfo;
+import jp.sigre.WantAll.gui.ProductInfoTableModel;
 import jp.sigre.WantAll.websearch.CallBrowser;
 
 public class WantAllGui extends JFrame {

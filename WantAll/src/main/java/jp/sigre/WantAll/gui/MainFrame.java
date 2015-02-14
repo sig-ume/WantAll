@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import jp.sigre.WantAll.file.SqliteExport;
+import jp.sigre.WantAll.file.SqliteImport;
 import jp.sigre.WantAll.gui.panel.ControlPanel;
 import jp.sigre.WantAll.gui.panel.FlagChangeControlPanel;
 import jp.sigre.WantAll.gui.panel.FlagChangeTablePanel;
@@ -26,18 +28,17 @@ import jp.sigre.WantAll.gui.panel.WantAllTablePanel;
  *
  */
 public class MainFrame extends JFrame {
-
-	WantAllTablePanel wantAllPanel = new WantAllTablePanel();
-	WantAllControlPanel wantAllCtrl = new WantAllControlPanel(wantAllPanel);
-	FlagChangeTablePanel flagChangePanel = new FlagChangeTablePanel();
-	FlagChangeControlPanel flagChangeCtrl = new FlagChangeControlPanel(flagChangePanel);
-	InfoDeleteTablePanel infoDeletePanel = new InfoDeleteTablePanel();
-	InfoDeleteControlPanel infoDeleteCtrl = new InfoDeleteControlPanel(infoDeletePanel);
-	InfoInsertTablePanel infoInsertPanel = new InfoInsertTablePanel();
-	InfoInsertControlPanel infoInsertCtrl = new InfoInsertControlPanel(infoInsertPanel);
-
 	TablePanel tablePanel;
 	ControlPanel ctrlPanel;
+
+	WantAllTablePanel		wantAllPanel	= new WantAllTablePanel();
+	WantAllControlPanel		wantAllCtrl		= new WantAllControlPanel(wantAllPanel);
+	FlagChangeTablePanel 	flagChangePanel = new FlagChangeTablePanel();
+	FlagChangeControlPanel	flagChangeCtrl	= new FlagChangeControlPanel(flagChangePanel);
+	InfoDeleteTablePanel	infoDeletePanel = new InfoDeleteTablePanel();
+	InfoDeleteControlPanel	infoDeleteCtrl	= new InfoDeleteControlPanel(infoDeletePanel);
+	InfoInsertTablePanel 	infoInsertPanel	= new InfoInsertTablePanel();
+	InfoInsertControlPanel	infoInsertCtrl	= new InfoInsertControlPanel(infoInsertPanel);
 
 	JMenuItem mntmWantall;
 	JMenuItem mntmInfodelete;
@@ -45,6 +46,11 @@ public class MainFrame extends JFrame {
 	JMenuItem mntmInfoInsert;
 	JMenuItem mntmCheckBox;
 	JMenuItem mntmReset;
+	JMenuItem mntmExport;
+	JMenuItem mntmImport;
+
+	SqliteExport sqliteExport = new SqliteExport(this);
+	SqliteImport sqliteImport = new SqliteImport(this);
 
 	public MainFrame(){
 		this.setBounds(100, 100, 492, 400);
@@ -82,6 +88,15 @@ public class MainFrame extends JFrame {
 		mntmReset = new JMenuItem("Reset");
 		mntmReset.addActionListener(new MenuActionListener());
 		menuBar.add(mntmReset);
+
+		mntmExport = new JMenuItem("Export");
+		mntmExport.addActionListener(new MenuActionListener());
+		menuBar.add(mntmExport);
+
+		mntmImport = new JMenuItem("Import");
+		mntmImport.addActionListener(new MenuActionListener());
+		menuBar.add(mntmImport);
+
 	}
 
 	public static void main(String[] args) {
@@ -112,6 +127,12 @@ public class MainFrame extends JFrame {
 			}
 			if (event.getSource() == mntmReset) {
 				tablePanel.resetTable();
+			}
+			if (event.getSource() == mntmExport) {
+				sqliteExport.dialogExportFile();
+			}
+			if (event.getSource() == mntmImport) {
+				sqliteImport.dialogImportFile();
 			}
 		}
 	}
