@@ -12,16 +12,16 @@ import javax.swing.JMenuItem;
 
 import jp.sigre.WantAll.file.SqliteExport;
 import jp.sigre.WantAll.file.SqliteImport;
-import jp.sigre.WantAll.gui.panel.ControlPanel;
-import jp.sigre.WantAll.gui.panel.FlagChangeControlPanel;
-import jp.sigre.WantAll.gui.panel.FlagChangeTablePanel;
-import jp.sigre.WantAll.gui.panel.InfoDeleteControlPanel;
-import jp.sigre.WantAll.gui.panel.InfoDeleteTablePanel;
-import jp.sigre.WantAll.gui.panel.InfoInsertControlPanel;
-import jp.sigre.WantAll.gui.panel.InfoInsertTablePanel;
-import jp.sigre.WantAll.gui.panel.TablePanel;
-import jp.sigre.WantAll.gui.panel.WantAllControlPanel;
-import jp.sigre.WantAll.gui.panel.WantAllTablePanel;
+import jp.sigre.WantAll.gui.panel.control.ControlPanel;
+import jp.sigre.WantAll.gui.panel.control.FlagChangeControlPanel;
+import jp.sigre.WantAll.gui.panel.control.InfoDeleteControlPanel;
+import jp.sigre.WantAll.gui.panel.control.InfoInsertControlPanel;
+import jp.sigre.WantAll.gui.panel.control.WantAllControlPanel;
+import jp.sigre.WantAll.gui.panel.table.FlagChangeTablePanel;
+import jp.sigre.WantAll.gui.panel.table.InfoDeleteTablePanel;
+import jp.sigre.WantAll.gui.panel.table.InfoInsertTablePanel;
+import jp.sigre.WantAll.gui.panel.table.TablePanel;
+import jp.sigre.WantAll.gui.panel.table.WantAllTablePanel;
 
 /**
  * @author sigre

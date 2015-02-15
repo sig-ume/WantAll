@@ -88,4 +88,12 @@ public class ProductInfoBean {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductInfoBean [id=" + id + ", title=" + title + ", author="
+				+ author + ", url=" + url + ", releaseDate=" + releaseDate
+				+ ", flag=" + flag + "]";
+	}
+
+
 }

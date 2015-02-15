@@ -1,4 +1,4 @@
-package jp.sigre.WantAll.gui.panel;
+package jp.sigre.WantAll.gui.panel.table;
 
 import javax.swing.JOptionPane;
 

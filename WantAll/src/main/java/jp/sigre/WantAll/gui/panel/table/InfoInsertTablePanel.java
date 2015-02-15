@@ -1,7 +1,7 @@
 /**
  *
  */
-package jp.sigre.WantAll.gui.panel;
+package jp.sigre.WantAll.gui.panel.table;
 
 import jp.sigre.WantAll.ProductInfoBean;
 import jp.sigre.WantAll.database.productinfo.ConnectDB;

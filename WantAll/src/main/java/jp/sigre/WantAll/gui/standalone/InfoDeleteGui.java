@@ -139,6 +139,7 @@ public class InfoDeleteGui extends JFrame {
 				if (count == 1 ) {
 					System.out.println("remove");
 					model.removeRow(row);
+					row--;
 				} else {
 					System.out.println(info.getInfoAsAry().toString());
 				}

@@ -134,6 +134,7 @@ public class ConnectDB {
 		return null;
 	}
 
+
 	/**
 	 * 商品を1件DBからDeleteする
 	 * @param info

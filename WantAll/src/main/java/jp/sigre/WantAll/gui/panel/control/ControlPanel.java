@@ -1,7 +1,7 @@
 /**
  * 
  */
-package jp.sigre.WantAll.gui.panel;
+package jp.sigre.WantAll.gui.panel.control;
 
 import javax.swing.JPanel;
 

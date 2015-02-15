@@ -1,7 +1,7 @@
 /**
  *
  */
-package jp.sigre.WantAll.gui.panel;
+package jp.sigre.WantAll.gui.panel.table;
 
 import java.util.ArrayList;
 import java.util.List;

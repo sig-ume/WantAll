@@ -1,4 +1,4 @@
-package jp.sigre.WantAll.gui.panel;
+package jp.sigre.WantAll.gui.panel.table;
 
 import javax.swing.JOptionPane;
 
@@ -42,7 +42,7 @@ public class InfoDeleteTablePanel extends TablePanel {
 					model.removeRow(row);
 					row--;
 				} else {
-					System.out.println(info.getInfoAsAry().toString() + " " + count);
+					System.out.println(info.toString() + " " + count);
 				}
 			}
 		}
@@ -57,8 +57,9 @@ public class InfoDeleteTablePanel extends TablePanel {
 				if (count == 1 ) {
 					System.out.println("remove");
 					model.removeRow(row);
+					row--;
 				} else {
-					System.out.println(info.getInfoAsAry().toString() + " " + count);
+					System.out.println(info.toString() + " " + count);
 				}
 			}
 		}

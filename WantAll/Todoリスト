@@ -1,5 +1,6 @@
 ●やりたいこと
-・URL版Validator
+・コンソール表示
+http://d.hatena.ne.jp/altcla/20091029/1256824750
 ・DBファイルの置き換えインポート
 ・DBファイルがない初期状態でのDB作成
 ・Hibernate実装版
@@ -19,19 +20,19 @@
 http://makotojun.blog52.fc2.com/blog-entry-7.html
 
 ●調査/バグ
-・Deleteおかしい
-	・複数選択した場合、一部しか削除されない
 ・Kindle版Insertで、著者が取得できない
 ・Int型のDBデータにString型数値で放り込んだときに問題なく動作するか。
 
-●やりおわったこと
 
+
+●やりおわったこと
+・ProductInfoBean.toString
+・URL版Validator
 
 ●調査/バグ
-・DBからTableModelにデータを入力する際に変な床に入ってる。
-・インポートがおかしい
-・UnparsedDate
-http://www.amazon.co.jp/gp/product/B001H54AQW/ref=gno_cart_title_0?ie=UTF8&psc=1&smid=A3EFI0A1TYYBWT
+・Deleteおかしい
+	・複数選択した場合、一部しか削除されない
+	→前にあったやつと同様 row--;
 
 ●調査済み
 ・表データ変更→取得した場合に取得されたデータがどうなるか

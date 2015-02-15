@@ -1,7 +1,7 @@
 /**
  *
  */
-package jp.sigre.WantAll.gui.panel;
+package jp.sigre.WantAll.gui.panel.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import jp.sigre.WantAll.gui.ProductInfoTableModel;
+import jp.sigre.WantAll.gui.panel.table.WantAllTablePanel;
 
 /**
  * @author sigre

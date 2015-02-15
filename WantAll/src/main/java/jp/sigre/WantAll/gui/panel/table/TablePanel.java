@@ -1,7 +1,7 @@
 /**
  *
  */
-package jp.sigre.WantAll.gui.panel;
+package jp.sigre.WantAll.gui.panel.table;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
