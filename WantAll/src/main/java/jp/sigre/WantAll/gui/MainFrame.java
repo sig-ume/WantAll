@@ -22,6 +22,7 @@ import jp.sigre.WantAll.gui.panel.table.InfoDeleteTablePanel;
 import jp.sigre.WantAll.gui.panel.table.InfoInsertTablePanel;
 import jp.sigre.WantAll.gui.panel.table.TablePanel;
 import jp.sigre.WantAll.gui.panel.table.WantAllTablePanel;
+import jp.sigre.WantAll.gui.text.ConsolePanel;
 
 /**
  * @author sigre
@@ -48,6 +49,7 @@ public class MainFrame extends JFrame {
 	JMenuItem mntmReset;
 	JMenuItem mntmExport;
 	JMenuItem mntmImport;
+	JMenuItem mntmText;
 
 	SqliteExport sqliteExport = new SqliteExport(this);
 	SqliteImport sqliteImport = new SqliteImport(this);
@@ -97,6 +99,9 @@ public class MainFrame extends JFrame {
 		mntmImport.addActionListener(new MenuActionListener());
 		menuBar.add(mntmImport);
 
+		mntmText = new JMenuItem("Text");
+		mntmText.addActionListener(new MenuActionListener());
+		menuBar.add(mntmText);
 	}
 
 	public static void main(String[] args) {
@@ -134,11 +139,16 @@ public class MainFrame extends JFrame {
 			if (event.getSource() == mntmImport) {
 				sqliteImport.dialogImportFile();
 			}
+			if (event.getSource() == mntmText) {
+				displayTextPanel();
+			}
 		}
 	}
 
 	public void changePanel(String panelName) {
-		getContentPane().removeAll();
+		//getContentPane().removeAll();
+		getContentPane().remove(tablePanel);
+		getContentPane().remove(ctrlPanel);
 		setTitle(panelName);
 
 		if(panelName == "InfoDelete") {
@@ -169,8 +179,26 @@ public class MainFrame extends JFrame {
 		getContentPane().add(ctrlPanel, BorderLayout.CENTER);
 		ctrlPanel.setLayout(null);
 
+
+
 		setVisible(true);
 		repaint();
 		revalidate();
+	}
+
+	private void displayTextPanel() {
+		this.setBounds(100, 100, 492, 550);
+
+		ConsolePanel console = new ConsolePanel();
+
+        getContentPane().add(console, BorderLayout.SOUTH);
+        console.setVisible(true);
+        //console.setLayout(null);
+        //setLocationRelativeTo(null);
+
+        setVisible(true);
+        repaint();
+		revalidate();
+
 	}
 }

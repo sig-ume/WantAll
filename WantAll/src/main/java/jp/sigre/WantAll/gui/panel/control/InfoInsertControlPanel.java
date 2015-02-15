@@ -145,6 +145,7 @@ public class InfoInsertControlPanel extends ControlPanel {
 		return validateTitle(info) && validateReleaseDate(info);
 	}
 
+	@SuppressWarnings("unused")
 	private boolean validateInput() {
 		return validateTitle() && validateReleaseDate();
 	}
