@@ -25,7 +25,9 @@ public class ConsolePanel extends JPanel {
         //area.setEditable(false);  // ReadOnly に
 		//area.setPreferredSize(new Dimension(380, 180));
         JTextAreaStream stream = new JTextAreaStream(area);
-        System.setOut(new PrintStream(stream, true));    // true は AutoFlush の設定
+        PrintStream out = new PrintStream(stream, true);
+        System.setOut(out);    // true は AutoFlush の設定
+        System.setErr(out);
 
         JScrollPane sp = new JScrollPane(area);
 		sp.setPreferredSize(new Dimension(420, 140));

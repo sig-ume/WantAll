@@ -48,7 +48,9 @@ public class JTextAreaStream extends OutputStream {
         JTextArea area = new JTextArea();
         area.setEditable(false);  // ReadOnly に
         JTextAreaStream stream = new JTextAreaStream(area);
-        System.setOut(new PrintStream(stream, true));    // true は AutoFlush の設定
+        PrintStream out = new PrintStream(stream, true);
+        System.setOut(out);    // true は AutoFlush の設定
+        System.setErr(out);
 
         JFrame frame = new JFrame();
         frame.getContentPane().add(area);
