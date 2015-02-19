@@ -3,18 +3,28 @@
  */
 package jp.sigre.WantAll;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 
 /**
  * @author sigre
  * 作品情報を格納するBean
  */
+@DatabaseTable(tableName = "ProductInfo")
 public class ProductInfoBean {
 
+	@DatabaseField(generatedId=true)
 	private int    id = -1;
+	@DatabaseField(id=true)
 	private String title;
+	@DatabaseField
 	private String author;
+	@DatabaseField
 	private String url;
+	@DatabaseField
 	private int    releaseDate = 18000101;
+	@DatabaseField
 	private int    flag; //表示要否etc
 
 	public ProductInfoBean(int id, String title, String author, String url, int releaseDate, int flag) {

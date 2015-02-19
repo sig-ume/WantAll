@@ -10,6 +10,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 import jp.sigre.WantAll.ProductInfoBean;
+import jp.sigre.WantAll.database.ormlite.ConnectDBORM;
 import jp.sigre.WantAll.database.productinfo.ConnectDB;
 
 /**
@@ -32,14 +33,14 @@ public class ProductInfoTableModel extends DefaultTableModel {
 	}
 
 	public void setProductInfo(boolean bool) {
-		List<ProductInfoBean> list = new ConnectDB().getProductInfoList();
+		List<ProductInfoBean> list = new ConnectDBORM().getProductInfoList();
 
 		setRows(list, bool);
 	}
 
 
 	public void setProductInfoAll(boolean bool) {
-		List<ProductInfoBean> list = new ConnectDB().getProductInfoListAll();
+		List<ProductInfoBean> list = new ConnectDBORM().getProductInfoListAll();
 
 		setRows(list, bool);
 	}
