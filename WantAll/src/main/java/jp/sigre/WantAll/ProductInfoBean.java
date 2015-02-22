@@ -3,6 +3,7 @@
  */
 package jp.sigre.WantAll;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -78,6 +79,7 @@ public class ProductInfoBean {
 		this.releaseDate = releaseDate;
 	}
 
+	@Column(name = "flg")
 	public int getFlag() {
 		return flag;
 	}
