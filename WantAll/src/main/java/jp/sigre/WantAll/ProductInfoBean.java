@@ -3,11 +3,18 @@
  */
 package jp.sigre.WantAll;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 
 /**
  * @author sigre
  * 作品情報を格納するBean
  */
+@Entity
+@Table(name = "ProductInfo")
 public class ProductInfoBean {
 
 	private int    id = -1;
@@ -29,6 +36,7 @@ public class ProductInfoBean {
 	public ProductInfoBean() {
 	}
 
+	@Id
 	public int getId() {
 		return id;
 	}
@@ -36,6 +44,7 @@ public class ProductInfoBean {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 
 	public String getTitle() {
 		return title;
@@ -77,6 +86,7 @@ public class ProductInfoBean {
 		this.flag = flag;
 	}
 
+	@Transient
 	public String[] getInfoAsAry() {
 		String id     = String.valueOf(getId() );
 		String title  = (getTitle()		 != null) ? getTitle()	: "";

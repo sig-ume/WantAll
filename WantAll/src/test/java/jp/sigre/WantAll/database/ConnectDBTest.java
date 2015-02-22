@@ -7,7 +7,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import jp.sigre.WantAll.ProductInfoBean;
@@ -26,19 +25,13 @@ import org.junit.runners.JUnit4;
 public class ConnectDBTest {
 	ConnectDB cdb = new ConnectDB();
 
-	@Test
-	public void connectStatementTest1() {
-		Statement stmt = cdb.connectStatement();
-		assertThat(stmt, is(notNullValue()));
-	}
-
-	@Test
-	public void closeStatementTest() throws SQLException {
-		cdb.getConnection().createStatement();
-
-		boolean actual = cdb.closeStatement();
-		assertThat(actual, is(true));
-	}
+//	@Test
+//	public void closeStatementTest() throws SQLException {
+//		cdb.getConnection().createStatement();
+//
+//		boolean actual = cdb.closeStatement();
+//		assertThat(actual, is(true));
+//	}
 
 	@Test
 	public void getProductInfoTest() throws SQLException {

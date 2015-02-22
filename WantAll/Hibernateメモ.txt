@@ -1,0 +1,76 @@
+・JDBCExceptionHelper→JdbcExceptionHelper
+
+・
+INFO: HCANN000001: Hibernate Commons Annotations {4.0.5.Final} [日 2 22 14:35:08 JST 2015]
+INFO: HHH000412: Hibernate Core {4.3.8.Final} [日 2 22 14:35:08 JST 2015]
+INFO: HHH000206: hibernate.properties not found [日 2 22 14:35:08 JST 2015]
+INFO: HHH000021: Bytecode provider name : javassist [日 2 22 14:35:08 JST 2015]
+INFO: HHH000043: Configuring from resource: /hibernate.cfg.xml [日 2 22 14:35:09 JST 2015]
+INFO: HHH000040: Configuration resource: /hibernate.cfg.xml [日 2 22 14:35:09 JST 2015]
+WARN: HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide! [日 2 22 14:35:09 JST 2015]
+INFO: HHH000041: Configured SessionFactory: null [日 2 22 14:35:09 JST 2015]
+WARN: HHH000402: Using Hibernate built-in connection pool (not for production use!) [日 2 22 14:35:10 JST 2015]
+INFO: HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:db/ProductInfo.db] [日 2 22 14:35:10 JST 2015]
+INFO: HHH000046: Connection properties: {user=, password=****} [日 2 22 14:35:10 JST 2015]
+INFO: HHH000006: Autocommit mode: false [日 2 22 14:35:10 JST 2015]
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1) [日 2 22 14:35:10 JST 2015]
+INFO: HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect [日 2 22 14:35:11 JST 2015]
+INFO: HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4 [日 2 22 14:35:11 JST 2015]
+INFO: HHH000399: Using default transaction strategy (direct JDBC transactions) [日 2 22 14:35:12 JST 2015]
+INFO: HHH000397: Using ASTQueryTranslatorFactory [日 2 22 14:35:12 JST 2015]
+
+・
+Exception in thread "main" org.hibernate.MappingException: Could not get constructor for org.hibernate.persister.entity.SingleTableEntityPersister
+	at org.hibernate.persister.internal.PersisterFactoryImpl.create(PersisterFactoryImpl.java:185)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:135)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:401)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1859)
+	at jp.sigre.WantAll.database.productinfo.ConnectDB.configureSessionFactory(ConnectDB.java:77)
+	at jp.sigre.WantAll.database.productinfo.ConnectDB.<init>(ConnectDB.java:37)
+	at jp.sigre.WantAll.gui.ProductInfoTableModel.<init>(ProductInfoTableModel.java:20)
+	at jp.sigre.WantAll.gui.panel.table.TablePanel.<init>(TablePanel.java:32)
+	at jp.sigre.WantAll.gui.panel.table.WantAllTablePanel.<init>(WantAllTablePanel.java:19)
+	at jp.sigre.WantAll.gui.MainFrame.<init>(MainFrame.java:35)
+	at jp.sigre.WantAll.gui.MainFrame.main(MainFrame.java:108)
+Caused by: org.hibernate.HibernateException: Unable to instantiate default tuplizer [org.hibernate.tuple.entity.PojoEntityTuplizer]
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:138)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:188)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:403)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:520)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:148)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.create(PersisterFactoryImpl.java:163)
+	... 10 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:135)
+	... 19 more
+Caused by: org.hibernate.PropertyNotFoundException: Could not find a setter for property infoAsAry in class jp.sigre.WantAll.ProductInfoBean
+	at org.hibernate.property.BasicPropertyAccessor.createSetter(BasicPropertyAccessor.java:246)
+	at org.hibernate.property.BasicPropertyAccessor.getSetter(BasicPropertyAccessor.java:240)
+	at org.hibernate.mapping.Property.getSetter(Property.java:328)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildPropertySetter(PojoEntityTuplizer.java:416)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:201)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:80)
+	... 24 more
+
+	・infoAsAryへのセッターがない
+	・get～をすべてチェックしている様子
+	・http://qiita.com/TONY0922/items/39d307b13fae7db43abb
+	・あるいはマッピング用クラスとそれを敬称したクラスを作る
+
+・Hibernate接続と通常のDB接続は両立付加っぽい。
+	・ロックされる
+	
+・何やってもロックされてる
+・初期起動の時点で　ERROR: HHH000299: Could not complete schema update [日 2 22 20:17:17 JST 2015]
+
+
+・ERROR: HHH000299: Could not complete schema update [日 2 22 16:44:53 JST 2015]
+
