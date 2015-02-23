@@ -5,7 +5,6 @@ package jp.sigre.WantAll.database.productinfo;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
-import java.util.Properties;
 
 import jp.sigre.WantAll.ProductInfoBean;
 
@@ -17,7 +16,6 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  * @author sigre
@@ -28,7 +26,7 @@ public class ConnectDB {
 	Statement stmt;
 
 	private static SessionFactory sessionFactory = null;
-    private static ServiceRegistry serviceRegistry = null;
+	private static ServiceRegistry serviceRegistry = null;
 
 	Session session = null;
 
@@ -50,17 +48,16 @@ public class ConnectDB {
 	}
 
 
-    private static SessionFactory configureSessionFactory() throws HibernateException {
-        Configuration configuration = new Configuration();
-        configuration.configure();
+	private static SessionFactory configureSessionFactory() throws HibernateException {
+		Configuration configuration = new Configuration().configure();
 
-        Properties properties = configuration.getProperties();
+		//Properties properties = configuration.getProperties();
 
-        serviceRegistry = new ServiceRegistryBuilder().applySettings(properties).buildServiceRegistry();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+		//serviceRegistry = new ServiceRegistryBuilder().applySettings(properties).buildServiceRegistry();
+		sessionFactory = configuration.buildSessionFactory();
 
-        return sessionFactory;
-    }
+		return sessionFactory;
+	}
 
 	/**
 	 * ProductInfoTableのデータをBeanに格納してリスト化
@@ -68,11 +65,11 @@ public class ConnectDB {
 	 */
 	public List<ProductInfoBean> getProductInfoList() {
 		session = sessionFactory.openSession();
-        Criteria crit = session.createCriteria(ProductInfoBean.class);
-        crit.add(Restrictions.not(Restrictions.eq("flag", 9)));
+		Criteria crit = session.createCriteria(ProductInfoBean.class);
+		crit.add(Restrictions.not(Restrictions.eq("flag", 9)));
 		List<ProductInfoBean> result = crit.list();
-        closeSession();
-        return result;
+		closeSession();
+		return result;
 	}
 
 	/**
@@ -81,9 +78,9 @@ public class ConnectDB {
 	 */
 	public List<ProductInfoBean> getProductInfoListAll() {
 		session = sessionFactory.openSession();
-        List<ProductInfoBean> result = session.createCriteria(ProductInfoBean.class).list();
-        closeSession();
-        return result;
+		List<ProductInfoBean> result = session.createCriteria(ProductInfoBean.class).list();
+		closeSession();
+		return result;
 	}
 
 	/**
@@ -92,12 +89,23 @@ public class ConnectDB {
 	 * @return 更新件数
 	 */
 	public int insertProductInfo(ProductInfoBean info) {
-		Transaction transaction = getSession();
-		session.save(info);
-		// Committing the change in the database.
-        session.flush();
-        transaction.commit();
-		closeSession();
+		Transaction trans = null;
+		try {
+			session = sessionFactory.openSession();
+
+			trans = session.beginTransaction();
+			System.out.println(info.toString());
+			session.save(info);
+			// Committing the change in the database.
+			//session.flush();
+			trans.commit();
+		} catch (Exception e) {
+			System.out.println("test");
+			trans.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 
 		return 1;
 	}
@@ -108,25 +116,25 @@ public class ConnectDB {
 	 */
 	public String[] getColumns() {
 
-//		try {
-//			con = getConnection();
-//			String sql = "SELECT * FROM ProductInfo;";
-//			PreparedStatement pstmt = con.prepareStatement(sql);
-//			ResultSet rs = pstmt.executeQuery();
-//			ResultSetMetaData metaData = rs.getMetaData();
-//			int columnCount = metaData.getColumnCount();
-//			String result[] = new String[columnCount];
-//			for (int iLoop = 0 ;iLoop < columnCount ; iLoop ++){
-//				//カラム名取得
-//				result[iLoop] = metaData.getColumnName(iLoop + 1);
-//			}
-//			return result;
-//		} catch (SQLException e1) {
-//			e1.printStackTrace();
-//		} finally {
-//			closeStatement();
-//		}
-//		return null;
+		//		try {
+		//			con = getConnection();
+		//			String sql = "SELECT * FROM ProductInfo;";
+		//			PreparedStatement pstmt = con.prepareStatement(sql);
+		//			ResultSet rs = pstmt.executeQuery();
+		//			ResultSetMetaData metaData = rs.getMetaData();
+		//			int columnCount = metaData.getColumnCount();
+		//			String result[] = new String[columnCount];
+		//			for (int iLoop = 0 ;iLoop < columnCount ; iLoop ++){
+		//				//カラム名取得
+		//				result[iLoop] = metaData.getColumnName(iLoop + 1);
+		//			}
+		//			return result;
+		//		} catch (SQLException e1) {
+		//			e1.printStackTrace();
+		//		} finally {
+		//			closeStatement();
+		//		}
+		//		return null;
 		String[] str = {"", "", "", "", "", ""};
 		return str;
 	}
@@ -138,99 +146,99 @@ public class ConnectDB {
 	 * @return 更新件数
 	 */
 	public int deleteProductInfo(ProductInfoBean info) {
-//		try {
-//			con = getConnection();
-//			String sql =  "DELETE FROM ProductInfo "
-//					+ "WHERE	id = ?"
-//					+ "AND		title = ?"
-//					+ "AND		author = ?"
-//					+ "AND		url = ?"
-//					+ "AND		releasedate = ?"
-//					+ "AND		flg = ?;"
-//					;
-//			PreparedStatement pstmt = con.prepareStatement(sql);
-//			pstmt.setInt   (1, info.getId());
-//			pstmt.setString(2, info.getTitle());
-//			pstmt.setString(3, info.getAuthor());
-//			pstmt.setString(4, info.getUrl());
-//			pstmt.setInt   (5, info.getReleaseDate());
-//			pstmt.setInt   (6, info.getFlag());
-//
-//			return pstmt.executeUpdate();
-//		} catch (SQLException e1) {
-//			e1.printStackTrace();
-//		}  finally {
-//			closeStatement();
-//		}
+		//		try {
+		//			con = getConnection();
+		//			String sql =  "DELETE FROM ProductInfo "
+		//					+ "WHERE	id = ?"
+		//					+ "AND		title = ?"
+		//					+ "AND		author = ?"
+		//					+ "AND		url = ?"
+		//					+ "AND		releasedate = ?"
+		//					+ "AND		flg = ?;"
+		//					;
+		//			PreparedStatement pstmt = con.prepareStatement(sql);
+		//			pstmt.setInt   (1, info.getId());
+		//			pstmt.setString(2, info.getTitle());
+		//			pstmt.setString(3, info.getAuthor());
+		//			pstmt.setString(4, info.getUrl());
+		//			pstmt.setInt   (5, info.getReleaseDate());
+		//			pstmt.setInt   (6, info.getFlag());
+		//
+		//			return pstmt.executeUpdate();
+		//		} catch (SQLException e1) {
+		//			e1.printStackTrace();
+		//		}  finally {
+		//			closeStatement();
+		//		}
 		return 0;
 	}
 
 	public int updateProductInfoFlg(int id, int updateFlg) {
-//		try {
-//			con = getConnection();
-//			String sql =  "UPDATE  ProductInfo "
-//					+ "SET 		flg = ?"
-//					+ "WHERE	id = ?";
-//			;
-//			PreparedStatement pstmt = con.prepareStatement(sql);
-//			pstmt.setInt   (1, updateFlg);
-//			pstmt.setInt   (2, id);
-//
-//			return pstmt.executeUpdate();
-//		} catch (SQLException e1) {
-//			e1.printStackTrace();
-//		}  finally {
-//			closeStatement();
-//		}
+		//		try {
+		//			con = getConnection();
+		//			String sql =  "UPDATE  ProductInfo "
+		//					+ "SET 		flg = ?"
+		//					+ "WHERE	id = ?";
+		//			;
+		//			PreparedStatement pstmt = con.prepareStatement(sql);
+		//			pstmt.setInt   (1, updateFlg);
+		//			pstmt.setInt   (2, id);
+		//
+		//			return pstmt.executeUpdate();
+		//		} catch (SQLException e1) {
+		//			e1.printStackTrace();
+		//		}  finally {
+		//			closeStatement();
+		//		}
 		return 0;
 	}
 
 	public boolean isExist(String title) {
 		boolean result = false;
-//
-//		try {
-//			con = getConnection();
-//			String sql =  "SELECT * FROM ProductInfo "
-//					+ "WHERE title = ?;";
-//
-//			PreparedStatement pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, title);
-//
-//			result = pstmt.executeQuery().next();
-//		} catch (SQLException e1) {
-//			e1.printStackTrace();
-//		}  finally {
-//			closeStatement();
-//		}
+		//
+		//		try {
+		//			con = getConnection();
+		//			String sql =  "SELECT * FROM ProductInfo "
+		//					+ "WHERE title = ?;";
+		//
+		//			PreparedStatement pstmt = con.prepareStatement(sql);
+		//			pstmt.setString(1, title);
+		//
+		//			result = pstmt.executeQuery().next();
+		//		} catch (SQLException e1) {
+		//			e1.printStackTrace();
+		//		}  finally {
+		//			closeStatement();
+		//		}
 		return result;
 	}
 
-//
-///**
-// * DB切断。
-// * @return
-// */
-//public boolean closeStatement() {
-//	try {
-//		if (stmt != null) stmt.close();
-//		if (con  != null) con.close();
-//	} catch (SQLException e1) {
-//		e1.printStackTrace();
-//		return false;
-//	}
-//	return true;
-//}
-//
-//public Connection getConnection() throws SQLException{
-//	try {
-//		Class.forName("org.sqlite.JDBC");
-//	} catch (ClassNotFoundException e) {
-//		e.printStackTrace();
-//	}
-//	con = DriverManager
-//			.getConnection("jdbc:sqlite:db/ProductInfo.db");
-//	return con;
-//}
+	//
+	///**
+	// * DB切断。
+	// * @return
+	// */
+	//public boolean closeStatement() {
+	//	try {
+	//		if (stmt != null) stmt.close();
+	//		if (con  != null) con.close();
+	//	} catch (SQLException e1) {
+	//		e1.printStackTrace();
+	//		return false;
+	//	}
+	//	return true;
+	//}
+	//
+	//public Connection getConnection() throws SQLException{
+	//	try {
+	//		Class.forName("org.sqlite.JDBC");
+	//	} catch (ClassNotFoundException e) {
+	//		e.printStackTrace();
+	//	}
+	//	con = DriverManager
+	//			.getConnection("jdbc:sqlite:db/ProductInfo.db");
+	//	return con;
+	//}
 
 
 }

@@ -74,3 +74,9 @@ Caused by: org.hibernate.PropertyNotFoundException: Could not find a setter for 
 
 ・ERROR: HHH000299: Could not complete schema update [日 2 22 16:44:53 JST 2015]
 
+・マッピングファイルに変更
+ERROR: HHH000404: Don't use old DTDs, read the Hibernate 3.x Migration Guide! [月 2 23 00:08:20 JST 2015]
+https://forum.hibernate.org/viewtopic.php?f=1&t=957694&view=next
+
+		
+	

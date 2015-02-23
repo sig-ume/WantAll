@@ -3,17 +3,19 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-    <session-factory>
-        <property name="show_sql">true</property>
-        <property name="format_sql">true</property>
-        <property name="dialect">org.hibernate.dialect.SQLiteDialect</property>
-        <property name="connection.driver_class">org.sqlite.JDBC</property>
-        <property name="connection.url">jdbc:sqlite:db/ProductInfo.db</property>
-        <property name="connection.username"></property>
-        <property name="connection.password"></property>
+	<session-factory>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="dialect">org.hibernate.dialect.SQLiteDialect</property>
+		<property name="connection.driver_class">org.sqlite.JDBC</property>
+		<property name="connection.url">jdbc:sqlite:db/ProductInfo.db</property>
+		<property name="connection.username"></property>
+		<property name="connection.password"></property>
 
-        <property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="jp.sigre.WantAll.ProductInfoBean"/>
-    </session-factory>
+		<!--<mapping class="jp.sigre.WantAll.ProductInfoBean"/> -->
+		<!-- Mapping files -->
+		<mapping resource="ProductInfo.hbm.xml" />
+	</session-factory>
 </hibernate-configuration>

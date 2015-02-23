@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="jp.sigre.WantAll.ProductInfoBean" table="ProductInfo">
+		<id name="id" column="Id" type="int" unsaved-value="null">
+			<generator class="identity" />
+		</id>
+		<property name="title"	column="Title"	type="string" unique="true" not-null="true"/>
+		<property name="author"	column="Author"	type="string" />
+		<property name="url"	column="URL"	type="string"/>
+		<property name="releaseDate"	column="ReleaseDate"	type="int"/>
+		<property name="flag"	column="Flg"	type="int" not-null="true"/>
+	</class>
+</hibernate-mapping>
