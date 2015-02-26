@@ -120,6 +120,7 @@ public class InfoInsertControlPanel extends ControlPanel {
 
 				if (validateInput(info)) {
 					listPanel.insertProductInfo(info);
+					resetTextField();
 				} else {
 					JOptionPane.showMessageDialog(getParent(), "考え直せ。");
 				}
@@ -131,6 +132,7 @@ public class InfoInsertControlPanel extends ControlPanel {
 				//System.out.println(info.getTitle());
 				if (info != null && validateInput(info)) {
 					listPanel.insertProductInfo(info);
+					resetTextField();
 				} else {
 					JOptionPane.showMessageDialog(getParent(), "考え直せ。");
 				}
@@ -242,5 +244,13 @@ public class InfoInsertControlPanel extends ControlPanel {
 		boolean result =  new ConnectDB().isExist(title);
 
 		return result;
+	}
+
+	private void resetTextField() {
+		titleField.setText("");
+		authorField.setText("");
+		urlField.setText("");
+		releaseDateField.setText("");
+		textField.setText("");
 	}
 }

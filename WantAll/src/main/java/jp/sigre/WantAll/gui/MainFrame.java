@@ -64,6 +64,8 @@ public class MainFrame extends JFrame {
 
 		setPanels();
 
+		displayTextPanel();
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 

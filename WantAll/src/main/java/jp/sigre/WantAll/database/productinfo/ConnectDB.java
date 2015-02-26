@@ -51,7 +51,7 @@ public class ConnectDB {
 	public List<ProductInfoBean> getProductInfoList() {
 		try {
 			con = getConnection();
-			String sql = "SELECT * FROM ProductInfo WHERE flg != 9;";
+			String sql = "SELECT * FROM ProductInfo WHERE flag != 9;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			return new ConvertResultSet().convertProjectInfo(rs);
@@ -90,7 +90,7 @@ public class ConnectDB {
 	public int insertProductInfo(ProductInfoBean info) {
 		try {
 			con = getConnection();
-			String sql =  "INSERT INTO ProductInfo (Title, Author, URL, ReleaseDate, Flg) VALUES (?, ?, ?, ?, ?);";
+			String sql =  "INSERT INTO ProductInfo (Title, Author, URL, ReleaseDate, Flag) VALUES (?, ?, ?, ?, ?);";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, info.getTitle());
 			pstmt.setString(2, info.getAuthor());
