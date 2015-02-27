@@ -59,8 +59,8 @@ public class MainFrame extends JFrame {
 
 		setTitle("WantAll");
 
-		tablePanel = wantAllPanel;
-		ctrlPanel = wantAllCtrl;
+		tablePanel = infoInsertPanel;
+		ctrlPanel = infoInsertCtrl;
 
 		setPanels();
 
@@ -101,9 +101,9 @@ public class MainFrame extends JFrame {
 		mntmImport.addActionListener(new MenuActionListener());
 		menuBar.add(mntmImport);
 
-		mntmText = new JMenuItem("Text");
-		mntmText.addActionListener(new MenuActionListener());
-		menuBar.add(mntmText);
+//		mntmText = new JMenuItem("Text");
+//		mntmText.addActionListener(new MenuActionListener());
+//		menuBar.add(mntmText);
 	}
 
 	public static void main(String[] args) {

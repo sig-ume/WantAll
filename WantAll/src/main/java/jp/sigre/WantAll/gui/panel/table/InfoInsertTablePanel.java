@@ -27,7 +27,7 @@ public class InfoInsertTablePanel extends TablePanel {
 		if (lineCount != 1) {
 			return false;
 		};
-		model.updateProductInfo(info);
+		model.resetProductInfo(true);
 
 		return true;
 	}

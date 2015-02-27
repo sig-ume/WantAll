@@ -51,7 +51,7 @@ public class ConnectDB {
 	public List<ProductInfoBean> getProductInfoList() {
 		try {
 			con = getConnection();
-			String sql = "SELECT * FROM ProductInfo WHERE flag != 9;";
+			String sql = "SELECT * FROM ProductInfo WHERE flag != 9 ORDER BY id DESC;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			return new ConvertResultSet().convertProjectInfo(rs);
@@ -70,7 +70,7 @@ public class ConnectDB {
 	public List<ProductInfoBean> getProductInfoListAll() {
 		try {
 			con = getConnection();
-			String sql = "SELECT * FROM ProductInfo;";
+			String sql = "SELECT * FROM ProductInfo ORDER BY id DESC;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			return new ConvertResultSet().convertProjectInfo(rs);

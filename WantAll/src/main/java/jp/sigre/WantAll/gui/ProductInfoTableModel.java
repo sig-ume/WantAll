@@ -55,8 +55,9 @@ public class ProductInfoTableModel extends DefaultTableModel {
 
 
 	public void resetProductInfo(boolean bool) {
-		for (int i = 0; i < super.getRowCount(); i++) {
-			super.removeRow(i);
+		int rowCount = super.getRowCount();
+		for (int i = 0; i < rowCount; i++) {
+			super.removeRow(0);
 		}
 
 		setProductInfo(bool);
