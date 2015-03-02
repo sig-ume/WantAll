@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -110,7 +111,8 @@ public class InfoInsertControlPanel extends ControlPanel {
 		public void actionPerformed(ActionEvent event) {
 			if(event.getSource()  ==  insertButton)  {
 				String releaseStr = releaseDateField.getText();
-				int release = releaseStr.equals("") ? 00000000 : Integer.parseInt(releaseStr);
+				String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
+				int release = releaseStr.equals("") ? Integer.parseInt(today) : Integer.parseInt(releaseStr);
 				ProductInfoBean info = new ProductInfoBean(	-1,
 						titleField.getText(),
 						authorField.getText(),

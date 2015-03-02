@@ -1,0 +1,27 @@
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- /* 標準出力にログを吐き出す */ -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- /* ファイルにログを吐き出す */ -->
+	<appender name="DAILY_ROLLING" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="c:/log.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- /* HIBERNATEログをSTDOUTとDAILY_ROLLINGに吐き出す */ -->
+	<category name="org.hibernate">
+		<priority value="DEBUG" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="DAILY_ROLLING" />
+	</category>
+</log4j:configuration>

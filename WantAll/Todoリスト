@@ -21,10 +21,14 @@
 	・Flg小さく
 	・Title大きく
 	・表自体も少し大きく
+	http://www.javadrive.jp/tutorial/jtable/index6.html
 ・サーバ連動機能
+・Gechu.comからのデータ入力
+・Validator分離
 
 
 ●調査/バグ
+・Infodelete flg
 ・Jar化した場合にDBファイルが見つからない
 	C:\pleiades\workspace\dbがパスとして指定される
 	→ひとまずDBファイルは外部ファイルとして運用
@@ -37,15 +41,10 @@
 	・なんで変わるのか、根本原因はどこ？
 ・検索時、ハイフンを削除
 
+
 ●やりおわったこと
-・コンソール最初から表示
-・初期表示画面をInfoInsertに
-・エラー出力もコンソールに表示
-・DB表示を逆順にする
-	Insert部も修正
 
 ●調査/バグ
-
 
 ●調査済み
 ・表データ変更→取得した場合に取得されたデータがどうなるか
@@ -71,6 +70,7 @@ http://www.techscore.com/blog/2012/12/20/%E3%81%82%E3%81%88%E3%81%A6%E8%A8%80%E3
 	・ORMLite使う
 ・ORMLite実装版
 	・Androidでしか使えない
+・DBに入力日を追加
 
 ●日記
 ・2/18
